@@ -2,36 +2,28 @@
   <v-container grid-list-md>
     <h1>Menu</h1>
     <v-layout>
-      <v-card d-inline-block class="mx-auto">
+      <v-card class="ma-3">
           <v-card-text>
             <h3>Salmon Sashimi</h3>
           </v-card-text>
-          <v-row justify="space-between">
-            <v-col cols="auto">
+          <v-row >
+            <v-col class="pl-10">
               <v-img
                 height="200"
                 width="200"
                 src="../assets/salmon-sashimi.png"
               ></v-img>
             </v-col>
-
-            <v-col
-              cols="auto"
-              class="text-center pl-0"
-            >
-              <v-row
-                class="flex-column ma-0 fill-height"
-                justify="center"
-              >
+            <v-col class="pl-0 text-center">
+              <v-row class="flex-column ma-0 fill-height">
                 <v-col class="px-0">
                   <v-btn icon>
-                    <v-icon>mdi-heart</v-icon>
+                    <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-col>
-
-                <v-col class="px-0">
+                <v-col>
                   <v-btn icon>
-                    <v-icon>mdi-share-variant</v-icon>
+                    <v-icon>mdi-minus</v-icon>
                   </v-btn>
                 </v-col>
               </v-row>
@@ -39,40 +31,32 @@
           </v-row>
           <v-card-text>
             <div class="text--primary">
-              A lovely fresh salmon sashimi
+              A lovely fresh salmon sashimi - £8
             </div>
           </v-card-text>
       </v-card>
-      <v-card class="d-inline-block mx-auto">
+      <v-card class="text-xs-center ma-3">
           <v-card-text>
             <h3>Tuna Sashimi</h3>
           </v-card-text>
           <v-row justify="space-between">
-            <v-col cols="auto">
+            <v-col class="pl-10">
               <v-img
                 height="200"
                 width="200"
                 src="../assets/tuna-sashimi.jpg"
               ></v-img>
             </v-col>
-
-            <v-col
-              cols="auto"
-              class="text-center pl-0"
-            >
-              <v-row
-                class="flex-column ma-0 fill-height"
-                justify="center"
-              >
-                <v-col class="px-0">
+            <v-col class="text-center pl-0" >
+              <v-row class="flex-column ma-0 fill-height" >
+                <v-col>
                   <v-btn icon>
-                    <v-icon>mdi-heart</v-icon>
+                    <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-col>
-
                 <v-col class="px-0">
                   <v-btn icon>
-                    <v-icon>mdi-share-variant</v-icon>
+                    <v-icon>mdi-minus</v-icon>
                   </v-btn>
                 </v-col>
               </v-row>
@@ -80,7 +64,7 @@
           </v-row>
           <v-card-text>
             <div class="text--primary">
-              A lovely fresh tuna sashimi
+              A lovely fresh tuna sashimi - £7
             </div>
           </v-card-text>
       </v-card>
