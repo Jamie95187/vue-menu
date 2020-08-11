@@ -17,12 +17,12 @@
             <v-col class="pl-0 text-center">
               <v-row class="flex-column ma-0 fill-height">
                 <v-col class="px-0">
-                  <v-btn icon>
+                  <v-btn @click="updateOrder()" icon>
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-col>
                 <v-col>
-                  <v-btn icon>
+                  <v-btn @click="updateOrder()" icon>
                     <v-icon>mdi-minus</v-icon>
                   </v-btn>
                 </v-col>
@@ -50,12 +50,12 @@
             <v-col class="text-center pl-0" >
               <v-row class="flex-column ma-0 fill-height" >
                 <v-col>
-                  <v-btn icon>
+                  <v-btn @click="updateOrder()" icon>
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-col>
                 <v-col class="px-0">
-                  <v-btn icon>
+                  <v-btn @click="updateOrder()" icon>
                     <v-icon>mdi-minus</v-icon>
                   </v-btn>
                 </v-col>
@@ -74,7 +74,17 @@
 
 <script>
   export default {
+    data: () => ({
+      price: 0,
+      order: ({
 
+      })
+    }),
+    methods: {
+      updateOrder() {
+        console.log("hello")
+      }
+    }
   }
 </script>
 
