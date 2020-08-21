@@ -50,7 +50,7 @@
             <v-col class="text-center pl-0" >
               <v-row class="flex-column ma-0 fill-height" >
                 <v-col>
-                  <v-btn @click="updateOrder()" icon>
+                  <v-btn @click="updateOrder(logme($event))" icon>
                     <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-col>
@@ -81,7 +81,8 @@
       })
     }),
     methods: {
-      updateOrder() {
+      updateOrder(item) {
+        console.log(item)
         console.log("hello")
       }
     }
