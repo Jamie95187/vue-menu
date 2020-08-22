@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import VueTextAreaAutosize from 'vue-textarea-autosize';
 import firebase from 'firebase/app';
@@ -8,6 +8,7 @@ import 'firebase/firestore';
 Vue.use(VueTextAreaAutosize);
 
 Vue.config.productionTip = false
+Vue.config.silent = true
 
 firebase.initializeApp({
   apiKey: "AIzaSyDcecGLgTDMahwuct-6bK95No5IhwfEpPE",
