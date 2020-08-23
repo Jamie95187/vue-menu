@@ -6,12 +6,15 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import firebase from 'firebase/app';
 import store from './store'
 import 'firebase/firestore';
-import router from './router'
+import router from './router';
+import AlertComponent from './components/Shared/Alert.vue';
 
 Vue.use(VueTextAreaAutosize);
 
 Vue.config.productionTip = false
 Vue.config.silent = true
+
+Vue.component('app-alert', AlertComponent);
 
 firebase.initializeApp({
   apiKey: "AIzaSyDcecGLgTDMahwuct-6bK95No5IhwfEpPE",
