@@ -54,13 +54,13 @@
         let menuItems = [
           { icon: 'face', title: 'Sign up', link: '/signup'},
           { icon: 'lock_open', title: 'Sign in', link: '/signin'},
-          { icon: 'fastfood', title: 'Menu', link: '/menu'}
+          { icon: 'fastfood', title: 'Menu', link: '/'}
         ]
         if (this.userIsAuthenticated) {
           menuItems = [
             { icon: 'supervisor_account', title: 'View Order', link: '/order'},
             { icon: 'person', title: 'Profile', link: '/profile'},
-            { icon: 'fastfood', title: 'Menu', link: '/menu'}
+            { icon: 'fastfood', title: 'Menu', link: '/'}
           ]
         }
         return menuItems

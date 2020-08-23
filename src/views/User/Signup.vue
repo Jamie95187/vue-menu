@@ -5,7 +5,7 @@
         <v-card>
           <v-card-text>
             <v-container>
-              <form>
+              <form @submit.prevent="onSignup">
                 <v-layout row>
                   <v-flex xs12>
                     <v-text-field
@@ -60,13 +60,13 @@
       confirmPassword: ''
     }),
     computed: {
-      comparePassowrds () {
+      comparePasswords () {
         return this.password !== this.confirmPassword ? 'Passwords do not match' : ''
       }
     },
     methods: {
       onSignup () {
-        console.log({ email: this.email, password: this.password, confirmPassword: this.confirmPassword })
+        this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
       }
     }
   }
