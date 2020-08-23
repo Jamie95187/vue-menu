@@ -53,12 +53,14 @@
         // default case when not logged in
         let menuItems = [
           { icon: 'face', title: 'Sign up', link: '/signup'},
-          { icon: 'lock_open', title: 'Sign in', link: '/signin'}
+          { icon: 'lock_open', title: 'Sign in', link: '/signin'},
+          { icon: 'fastfood', title: 'Menu', link: '/menu'}
         ]
         if (this.userIsAuthenticated) {
           menuItems = [
             { icon: 'supervisor_account', title: 'View Order', link: '/order'},
-            { icon: 'person', title: 'Profile', link: '/profile'}
+            { icon: 'person', title: 'Profile', link: '/profile'},
+            { icon: 'fastfood', title: 'Menu', link: '/menu'}
           ]
         }
         return menuItems

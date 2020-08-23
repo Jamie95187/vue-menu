@@ -1,5 +1,5 @@
-import { shallowMount, mount } from '@vue/test-utils'
-import Menu from '@/components/Menu.vue'
+import { shallowMount } from '@vue/test-utils'
+import Menu from '@/views/Menu.vue'
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 
@@ -13,15 +13,12 @@ describe('Menu.vue', () => {
   })
 
   it('renders Menu Component', () => {
+    console.log("Menu " + wrapper);
     expect(wrapper.exists()).toBe(true)
   })
 
   it('does h1 exist', () => {
     expect(wrapper.find("h1").text()).toBe("Menu")
-  })
-
-  it('should render 2 card components', () => {
-    expect(wrapper.findComponent({ name: 'v-card '}).length).toEqual(2)
   })
 
 })

@@ -1,7 +1,12 @@
 <template>
   <v-app>
+    <Header/>
     <v-content>
-      <Header />
+      <v-layout>
+        <v-flex>
+          <router-view />
+        </v-flex>
+      </v-layout>
       <Menu/>
     </v-content>
   </v-app>
@@ -9,18 +14,12 @@
 
 <script>
 import Header from './components/Layout/Header.vue';
-import Menu from './components/Menu';
 
 export default {
   name: 'App',
-
   components: {
-    Menu,
     Header
   },
 
-  data: () => ({
-    //
-  }),
 };
 </script>

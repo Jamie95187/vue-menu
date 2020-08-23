@@ -2,8 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import VueTextAreaAutosize from 'vue-textarea-autosize';
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import firebase from 'firebase/app';
+import store from './store'
 import 'firebase/firestore';
+import router from './router'
 
 Vue.use(VueTextAreaAutosize);
 
@@ -24,5 +27,7 @@ export const db = firebase.firestore();
 
 new Vue({
   vuetify,
+  store,
+  router,
   render: h => h(App)
 }).$mount('#app')
