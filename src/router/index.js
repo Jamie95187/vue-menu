@@ -14,6 +14,11 @@ Vue.use(VueRouter)
     path: '/Signup',
     name: 'Signup',
     component: () => import('../views/User/Signup.vue')
+  },
+  {
+    path: '/Signin',
+    name: 'Signin',
+    component: () => import('../views/User/Signin.vue')
   }
 ]
 
