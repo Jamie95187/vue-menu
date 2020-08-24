@@ -1,17 +1,17 @@
 <template>
   <v-container grid-list-md>
     <h1>Menu</h1>
-    <v-layout>
+    <v-layout v-for="menuItem in menuItems" :key="menuItem.id">
       <v-card class="ma-3">
           <v-card-text>
-            <h3>Salmon Sashimi</h3>
+            <h3>{{ menuItem.title }}</h3>
           </v-card-text>
           <v-row >
             <v-col class="pl-10">
               <v-img
                 height="200"
                 width="200"
-                src="../assets/salmon-sashimi.png"
+                :src="menuItem.imageUrl"
               ></v-img>
             </v-col>
             <v-col class="pl-0 text-center">
@@ -31,20 +31,20 @@
           </v-row>
           <v-card-text>
             <div class="text--primary">
-              A lovely fresh salmon sashimi - £8
+              {{ menuItem.description }}
             </div>
           </v-card-text>
       </v-card>
       <v-card class="text-xs-center ma-3">
           <v-card-text>
-            <h3>Tuna Sashimi</h3>
+            <h3>{{ menuItem.title }}</h3>
           </v-card-text>
           <v-row justify="space-between">
             <v-col class="pl-10">
               <v-img
                 height="200"
                 width="200"
-                src="../assets/tuna-sashimi.jpg"
+                :src="menuItem.imageUrl"
               ></v-img>
             </v-col>
             <v-col class="text-center pl-0" >
@@ -64,7 +64,7 @@
           </v-row>
           <v-card-text>
             <div class="text--primary">
-              A lovely fresh tuna sashimi - £7
+              {{ menuItem.description }}
             </div>
           </v-card-text>
       </v-card>
@@ -80,6 +80,11 @@
 
       })
     }),
+    computed: {
+      menuItems () {
+        return this.$store.getters.loadedMenu
+      }
+    },
     methods: {
       updateOrder(item) {
         console.log(item)

@@ -6,6 +6,24 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    menu: [
+      {
+        imageUrl: '../assets/salmon-sashimi.png',
+        id: '12312312312asd',
+        title: 'Salmon Sashimi',
+        description: 'A lovely fresh salmon sashimi - £8',
+        price: '£8',
+        active: false
+      },
+      {
+        imageUrl: '../assets/tuna-sashimi.jpg',
+        id: '12312312312abd',
+        title: 'Tuna Sashimi',
+        description: 'A lovely fresh tuna sashimi - £7',
+        price: '£7',
+        active: false
+      }
+    ],
     orders: [
       {
 
@@ -78,6 +96,9 @@ export default new Vuex.Store({
     }
   },
   getters: {
+    loadedMenu (state) {
+      return state.menu
+    },
     user (state) {
       return state.user
     },

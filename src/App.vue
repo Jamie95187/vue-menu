@@ -1,14 +1,14 @@
 <template>
   <v-app>
     <Header/>
-    <v-content>
+    <v-main>
       <v-layout>
         <v-flex>
           <router-view />
         </v-flex>
       </v-layout>
       <Menu/>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
