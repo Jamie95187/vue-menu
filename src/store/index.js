@@ -22,6 +22,22 @@ export default new Vuex.Store({
         description: 'A lovely fresh tuna sashimi - £7',
         price: '£7',
         active: false
+      },
+      {
+        imageUrl: '../assets/tuna-sashimi.jpg',
+        id: '12312312312abe',
+        title: 'Cod Sashimi',
+        description: 'A lovely fresh Cod sashimi - £8',
+        price: '£8',
+        active: false
+      },
+      {
+        imageUrl: '../assets/salmon-sashimi.png',
+        id: '12312312312asd',
+        title: 'Sea Bream Sashimi',
+        description: 'A lovely fresh Sea Bream sashimi - £8',
+        price: '£9',
+        active: false
       }
     ],
     orders: [

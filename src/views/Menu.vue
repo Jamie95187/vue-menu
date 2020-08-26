@@ -1,10 +1,7 @@
 <template>
   <v-container grid-list-md>
     <h1>Menu</h1>
-    <v-col
-      v-for="k in 3"
-      :key="k"
-      >
+    <v-row class="ma-3 pa-6">
       <v-layout v-for="menuItem in menuItems" :key="menuItem.id">
         <v-card class="ma-3">
             <v-card-text>
@@ -40,7 +37,7 @@
             </v-card-text>
         </v-card>
     </v-layout>
-    </v-col>
+  </v-row>
   </v-container>
 </template>
 
