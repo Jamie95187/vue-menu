@@ -1,11 +1,11 @@
 <template>
   <v-container grid-list-md>
     <h1>Menu</h1>
-    <v-layout v-for="menuItem in menuItems" :key="menuItem.id">
-      <v-col
-        v-for="k in 3"
-        :key="k"
-        >
+    <v-col
+      v-for="k in 3"
+      :key="k"
+      >
+      <v-layout v-for="menuItem in menuItems" :key="menuItem.id">
         <v-card class="ma-3">
             <v-card-text>
               <h3>{{ menuItem.title }}</h3>
@@ -39,8 +39,8 @@
               </div>
             </v-card-text>
         </v-card>
-      </v-col>
     </v-layout>
+    </v-col>
   </v-container>
 </template>
 
