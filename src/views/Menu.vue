@@ -23,7 +23,7 @@
                     </v-btn>
                   </v-col>
                   <v-col>
-                    <v-btn @click="updateOrder()" icon>
+                    <v-btn :disabled="!menuItem.active" @click="updateOrder()" icon>
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
                   </v-col>
