@@ -18,7 +18,7 @@
               <v-col class="pl-0 text-center">
                 <v-row class="flex-column ma-0 fill-height">
                   <v-col class="px-0">
-                    <v-btn @click="updateOrder()" icon>
+                    <v-btn @click="updateOrder(menuItem.title)" icon>
                       <v-icon>mdi-plus</v-icon>
                     </v-btn>
                   </v-col>
