@@ -70,6 +70,7 @@ export default new Vuex.Store({
       for (var i = 0; i < state.menu.length; i++) {
         if (state.menu[i].title === item) {
           state.menu[i].orders++
+          state.menu[i].active = true
         }
       }
       console.log("updated dish!")
