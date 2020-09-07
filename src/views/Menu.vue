@@ -57,6 +57,9 @@
     methods: {
       addDish(item) {
         this.$store.dispatch('addDish', item)
+      },
+      removeDish(item) {
+        this.$store.dispatch('removeDish', item)
       }
     }
   }

@@ -73,8 +73,18 @@ export default new Vuex.Store({
           state.menu[i].active = true
         }
       }
-      console.log("updated dish!")
-      console.log(state.menu)
+      console.log("added dish!")
+    },
+    removeDish (state, item) {
+      for (var i = 0; i < state.menu.length; i++) {
+        if (state.menu[i].title === item) {
+          state.menu[i].orders--
+          if (state.menu[i].orders === 0) {
+            state.menu[i].active = false
+          }
+        }
+      }
+      console.log("removed dish!")
     }
   },
   actions: {
@@ -125,8 +135,10 @@ export default new Vuex.Store({
       commit('clearError')
     },
     addDish ({commit}, item) {
-      console.log("add dish")
       commit('addDish', item)
+    },
+    removeDish ({commit}, item) {
+      commit('removeDish', item)
     }
   },
   getters: {
