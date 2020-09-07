@@ -13,6 +13,7 @@ export default new Vuex.Store({
         title: 'Salmon Sashimi',
         description: 'A lovely fresh salmon sashimi - £8',
         price: '£8',
+        orders: 0,
         active: false
       },
       {
@@ -21,6 +22,7 @@ export default new Vuex.Store({
         title: 'Tuna Sashimi',
         description: 'A lovely fresh tuna sashimi - £7',
         price: '£7',
+        orders: 0,
         active: false
       },
       {
@@ -29,6 +31,7 @@ export default new Vuex.Store({
         title: 'Cod Sashimi',
         description: 'A lovely fresh Cod sashimi - £8',
         price: '£8',
+        orders: 0,
         active: false
       },
       {
@@ -37,6 +40,7 @@ export default new Vuex.Store({
         title: 'Sea Bream Sashimi',
         description: 'A lovely fresh Sea Bream sashimi - £8',
         price: '£9',
+        orders: 0,
         active: false
       }
     ],
@@ -61,6 +65,15 @@ export default new Vuex.Store({
     },
     clearError (state) {
       state.error = null
+    },
+    addDish (state, item) {
+      for (var i = 0; i < state.menu.length; i++) {
+        if (state.menu[i].title === item) {
+          state.menu[i].orders++
+        }
+      }
+      console.log("updated dish!")
+      console.log(state.menu)
     }
   },
   actions: {
@@ -109,6 +122,10 @@ export default new Vuex.Store({
     },
     clearError ({commit}) {
       commit('clearError')
+    },
+    addDish ({commit}, item) {
+      console.log("add dish")
+      commit('addDish', item)
     }
   },
   getters: {

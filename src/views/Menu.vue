@@ -18,12 +18,12 @@
               <v-col class="pl-0 text-center">
                 <v-row class="flex-column ma-0 fill-height">
                   <v-col class="px-0">
-                    <v-btn @click="updateOrder(menuItem.title)" icon>
+                    <v-btn @click="addDish(menuItem.title)" icon>
                       <v-icon>mdi-plus</v-icon>
                     </v-btn>
                   </v-col>
                   <v-col>
-                    <v-btn :disabled="!menuItem.active" @click="updateOrder()" icon>
+                    <v-btn :disabled="!menuItem.active" @click="removeDish(menuItem.title)" icon>
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
                   </v-col>
@@ -55,9 +55,8 @@
       }
     },
     methods: {
-      updateOrder(item) {
-        console.log(item)
-        console.log("hello")
+      addDish(item) {
+        this.$store.dispatch('addDish', item)
       }
     }
   }
