@@ -12,7 +12,7 @@ export default new Vuex.Store({
         id: '12312312312asd',
         title: 'Salmon Sashimi',
         description: 'A lovely fresh salmon sashimi - £8',
-        price: '£8',
+        price: 8,
         orders: 0,
         active: false
       },
@@ -21,7 +21,7 @@ export default new Vuex.Store({
         id: '12312312312abd',
         title: 'Tuna Sashimi',
         description: 'A lovely fresh tuna sashimi - £7',
-        price: '£7',
+        price: 7,
         orders: 0,
         active: false
       },
@@ -30,7 +30,7 @@ export default new Vuex.Store({
         id: '12312312312abe',
         title: 'Cod Sashimi',
         description: 'A lovely fresh Cod sashimi - £8',
-        price: '£8',
+        price: 8,
         orders: 0,
         active: false
       },
@@ -39,11 +39,12 @@ export default new Vuex.Store({
         id: '12312312312asd',
         title: 'Sea Bream Sashimi',
         description: 'A lovely fresh Sea Bream sashimi - £8',
-        price: '£9',
+        price: 9,
         orders: 0,
         active: false
       }
     ],
+    totalPrice: 0,
     orders: [
       {
 
@@ -153,6 +154,9 @@ export default new Vuex.Store({
     },
     error (state) {
       return state.error
+    },
+    totalPrice (state) {
+      return state.totalPrice
     }
   }
 })
