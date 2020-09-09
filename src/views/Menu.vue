@@ -18,12 +18,12 @@
               <v-col class="pl-0 text-center">
                 <v-row class="flex-column ma-0 fill-height">
                   <v-col class="px-0">
-                    <v-btn @click="addDish(menuItem.title)" icon>
+                    <v-btn @click="addDish(menuItem.title, menuItem.id)" icon>
                       <v-icon>mdi-plus</v-icon>
                     </v-btn>
                   </v-col>
                   <v-col>
-                    <v-btn :disabled="!menuItem.active" @click="removeDish(menuItem.title)" icon>
+                    <v-btn :disabled="!menuItem.active" @click="removeDish(menuItem.title, menuItem.id)" icon>
                       <v-icon>mdi-minus</v-icon>
                     </v-btn>
                   </v-col>
@@ -55,11 +55,11 @@
       }
     },
     methods: {
-      addDish(item) {
-        this.$store.dispatch('addDish', item)
+      addDish(item, id) {
+        this.$store.dispatch('addDish', item, id)
       },
-      removeDish(item) {
-        this.$store.dispatch('removeDish', item)
+      removeDish(item, id) {
+        this.$store.dispatch('removeDish', item, id)
       }
     }
   }

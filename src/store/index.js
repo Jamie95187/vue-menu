@@ -9,7 +9,7 @@ export default new Vuex.Store({
     menu: [
       {
         imageUrl: '../assets/salmon-sashimi.png',
-        id: '12312312312asd',
+        id: '1',
         title: 'Salmon Sashimi',
         description: 'A lovely fresh salmon sashimi - £8',
         price: 8,
@@ -18,7 +18,7 @@ export default new Vuex.Store({
       },
       {
         imageUrl: '../assets/tuna-sashimi.jpg',
-        id: '12312312312abd',
+        id: '2',
         title: 'Tuna Sashimi',
         description: 'A lovely fresh tuna sashimi - £7',
         price: 7,
@@ -27,7 +27,7 @@ export default new Vuex.Store({
       },
       {
         imageUrl: '../assets/tuna-sashimi.jpg',
-        id: '12312312312abe',
+        id: '3',
         title: 'Cod Sashimi',
         description: 'A lovely fresh Cod sashimi - £8',
         price: 8,
@@ -36,7 +36,7 @@ export default new Vuex.Store({
       },
       {
         imageUrl: '../assets/salmon-sashimi.png',
-        id: '12312312312asd',
+        id: '4',
         title: 'Sea Bream Sashimi',
         description: 'A lovely fresh Sea Bream sashimi - £8',
         price: 9,
@@ -45,11 +45,9 @@ export default new Vuex.Store({
       }
     ],
     totalPrice: 0,
-    orders: [
-      {
+    currentOrder: {
 
-      }
-    ],
+    },
     user: null,
     loading: false,
     error: null
@@ -86,6 +84,21 @@ export default new Vuex.Store({
         }
       }
       console.log("removed dish!")
+    },
+    updateOrder (state, id, action) {
+      if (Object.prototype.hasOwnProperty.call(state.currentOrder, id)) {
+        if (action === 'rem') {
+          state.currentOrder.id--
+        } else {
+          state.currentOrder.id++
+        }
+      } else {
+        state.currentOrder.id = 1
+      }
+      if (state.currentOrder.id === 0) {
+        delete state.currentOrder.id
+      }
+      console.log(Object.keys(state.currentOrder).length)
     }
   },
   actions: {
@@ -135,11 +148,13 @@ export default new Vuex.Store({
     clearError ({commit}) {
       commit('clearError')
     },
-    addDish ({commit}, item) {
+    addDish ({commit}, item, id) {
       commit('addDish', item)
+      commit('updateOrder', id, 'add')
     },
-    removeDish ({commit}, item) {
+    removeDish ({commit}, item, id) {
       commit('removeDish', item)
+      commit('updateOrder', id, 'rem')
     }
   },
   getters: {
