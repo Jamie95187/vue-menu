@@ -45,9 +45,7 @@ export default new Vuex.Store({
       }
     ],
     totalPrice: 0,
-    currentOrder: {
-
-    },
+    currentOrder: [],
     user: null,
     loading: false,
     error: null
@@ -85,20 +83,33 @@ export default new Vuex.Store({
       }
       console.log("removed dish!")
     },
-    updateOrder (state, id, action) {
-      if (Object.prototype.hasOwnProperty.call(state.currentOrder, id)) {
-        if (action === 'rem') {
-          state.currentOrder.id--
-        } else {
-          state.currentOrder.id++
+    updateOrderAdd (state, item) {
+      let contain = false
+      let idx = 0
+      for (var i = 0; i < state.currentOrder.length; i++) {
+        if (state.currentOrder[i][0] === item) {
+          contain = true
+          idx = i
         }
+      }
+      if (contain === true) {
+        console.log('Added')
+        state.currentOrder[idx][1]++
       } else {
-        state.currentOrder.id = 1
+        state.currentOrder.push([item, 1])
       }
-      if (state.currentOrder.id === 0) {
-        delete state.currentOrder.id
+      console.log(state.currentOrder)
+    },
+    updateOrderRemove (state, item) {
+      for (var i = 0; i < state.currentOrder.length; i++) {
+        if (state.currentOrder[i][0] === item) {
+          state.currentOrder[i][1]--
+          if (state.currentOrder[i][1] === 0) {
+            state.currentOrder.splice(i)
+          }
+        }
       }
-      console.log(Object.keys(state.currentOrder).length)
+      console.log(state.currentOrder)
     }
   },
   actions: {
@@ -148,13 +159,13 @@ export default new Vuex.Store({
     clearError ({commit}) {
       commit('clearError')
     },
-    addDish ({commit}, item, id) {
+    addDish ({commit}, item) {
       commit('addDish', item)
-      commit('updateOrder', id, 'add')
+      commit('updateOrderAdd', item)
     },
-    removeDish ({commit}, item, id) {
+    removeDish ({commit}, item) {
       commit('removeDish', item)
-      commit('updateOrder', id, 'rem')
+      commit('updateOrderRemove', item)
     }
   },
   getters: {
