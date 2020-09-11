@@ -19,6 +19,11 @@ Vue.use(VueRouter)
     path: '/Signin',
     name: 'Signin',
     component: () => import('../views/User/Signin.vue')
+  },
+  {
+    path: '/Order',
+    name: 'Order',
+    component: () => import('../views/Order.vue')
   }
 ]
 

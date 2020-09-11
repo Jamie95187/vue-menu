@@ -44,10 +44,7 @@
 <script>
   export default {
     data: () => ({
-      price: 0,
-      order: ({
-
-      })
+      price: 0
     }),
     computed: {
       menuItems () {
