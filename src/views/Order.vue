@@ -11,6 +11,19 @@
     </v-list>
     <v-divider></v-divider>
     <h2>Total Price {{ totalPrice }}</h2>
+    <v-divider></v-divider>
+    <v-row class="ma-3">
+      <v-column>
+        <v-btn type="submit" :disabled="loading" :loading="loading" class="mx-3">
+          Check Out
+        </v-btn>
+      </v-column>
+      <v-column>
+        <v-btn :disabled="loading" :loading="loading">
+          Cancel Order
+        </v-btn>
+      </v-column>
+    </v-row>
   </v-main>
 </template>
 
@@ -22,6 +35,9 @@
       },
       totalPrice () {
         return this.$store.getters.totalPrice
+      },
+      loading () {
+        return this.$store.getters.loading
       }
     }
   }
