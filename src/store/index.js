@@ -38,7 +38,7 @@ export default new Vuex.Store({
         imageUrl: '../assets/salmon-sashimi.png',
         id: '4',
         title: 'Sea Bream Sashimi',
-        description: 'A lovely fresh Sea Bream sashimi - £8',
+        description: 'A lovely fresh Sea Bream sashimi - £9',
         price: 9,
         orders: 0,
         active: false
@@ -68,6 +68,7 @@ export default new Vuex.Store({
         if (state.menu[i].title === item) {
           state.menu[i].orders++
           state.menu[i].active = true
+          state.totalPrice = state.totalPrice + state.menu[i].price
         }
       }
       console.log("added dish!")
@@ -76,6 +77,7 @@ export default new Vuex.Store({
       for (var i = 0; i < state.menu.length; i++) {
         if (state.menu[i].title === item) {
           state.menu[i].orders--
+          state.totalPrice = state.totalPrice - state.menu[i].price
           if (state.menu[i].orders === 0) {
             state.menu[i].active = false
           }
@@ -105,11 +107,10 @@ export default new Vuex.Store({
         if (state.currentOrder[i][0] === item) {
           state.currentOrder[i][1]--
           if (state.currentOrder[i][1] === 0) {
-            state.currentOrder.splice(i)
+            state.currentOrder.splice(i,i)
           }
         }
       }
-      console.log(state.currentOrder)
     }
   },
   actions: {
