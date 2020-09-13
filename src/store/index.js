@@ -111,6 +111,13 @@ export default new Vuex.Store({
           }
         }
       }
+    },
+    clearOrder (state) {
+      state.currentOrder = [];
+      for (var i = 0; i < state.menu.length; i++){
+        state.menu[i].orders = 0
+        state.menu[i].active = false
+      }
     }
   },
   actions: {
@@ -167,6 +174,12 @@ export default new Vuex.Store({
     removeDish ({commit}, item) {
       commit('removeDish', item)
       commit('updateOrderRemove', item)
+    },
+    submitOrder ({commit}) {
+      commit('setLoading', true)
+    },
+    clearOrder ({commit}) {
+      commit('clearOrder')
     }
   },
   getters: {
