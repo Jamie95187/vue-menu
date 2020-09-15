@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 import * as firebase from 'firebase'
 
 Vue.use(Vuex)
@@ -72,7 +71,6 @@ export default new Vuex.Store({
           state.totalPrice = state.totalPrice + state.menu[i].price
         }
       }
-      console.log("added dish!")
     },
     removeDish (state, item) {
       for (var i = 0; i < state.menu.length; i++) {
@@ -84,7 +82,6 @@ export default new Vuex.Store({
           }
         }
       }
-      console.log("removed dish!")
     },
     updateOrderAdd (state, item) {
       let contain = false
@@ -96,12 +93,10 @@ export default new Vuex.Store({
         }
       }
       if (contain === true) {
-        console.log('Added')
         state.currentOrder[idx][1]++
       } else {
         state.currentOrder.push([item, 1])
       }
-      console.log(state.currentOrder)
     },
     updateOrderRemove (state, item) {
       for (var i = 0; i < state.currentOrder.length; i++) {
@@ -176,9 +171,20 @@ export default new Vuex.Store({
       commit('removeDish', item)
       commit('updateOrderRemove', item)
     },
-    submitOrder ({commit}) {
+    submitOrder ({commit}, order) {
       commit('setLoading', true)
-      console.log("hello")
+      let order_2 = "order_2"
+      firebase.database().ref('orders/' + order_2).set({
+        User: 1,
+        Order: order
+      },
+      function(error) {
+        if (error) {
+          console.log(error)
+        } else {
+          console.log("Successfully posted order")
+        }
+      })
     },
     clearOrder ({commit}) {
       commit('clearOrder')
