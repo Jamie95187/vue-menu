@@ -14,7 +14,7 @@
     <v-divider></v-divider>
     <v-row class="ma-3">
       <v-column>
-        <v-btn @click="submitOrder(orderItems)" :disabled="loading || orderItems.length === 0" :loading="loading" class="mx-3">
+        <v-btn @click="submitOrder(orderItems, totalPrice)" :disabled="loading || orderItems.length === 0" :loading="loading" class="mx-3">
           Check Out
         </v-btn>
       </v-column>
@@ -41,7 +41,7 @@
       }
     },
     methods: {
-      submitOrder (order) {
+      submitOrder (order, price) {
         this.$store.dispatch('submitOrder', order)
       }
     }

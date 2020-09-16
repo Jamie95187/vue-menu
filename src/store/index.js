@@ -183,12 +183,10 @@ export default new Vuex.Store({
         if (error) {
           console.log(error)
         } else {
+          commit('clearOrder')
           console.log("Successfully posted order")
         }
       })
-    },
-    clearOrder ({commit}) {
-      commit('clearOrder')
     }
   },
   getters: {
