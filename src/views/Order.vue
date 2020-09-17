@@ -42,7 +42,7 @@
     },
     methods: {
       submitOrder (order, price) {
-        this.$store.dispatch('submitOrder', order)
+        this.$store.dispatch('submitOrder', order, price)
       }
     }
   }

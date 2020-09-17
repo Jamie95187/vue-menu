@@ -110,6 +110,7 @@ export default new Vuex.Store({
     },
     clearOrder (state) {
       state.currentOrder = [];
+      state.totalPrice = 0;
       for (var i = 0; i < state.menu.length; i++){
         state.menu[i].orders = 0
         state.menu[i].active = false
@@ -171,13 +172,13 @@ export default new Vuex.Store({
       commit('removeDish', item)
       commit('updateOrderRemove', item)
     },
-    submitOrder ({commit}, order, totalPrice) {
+    submitOrder ({commit}, order) {
       commit('setLoading', true)
       let order_2 = "order_2"
       firebase.database().ref('orders/' + order_2).set({
         User: 1,
         Order: order,
-        Price: totalPrice
+        Price: this.state.totalPrice
       },
       function(error) {
         if (error) {
@@ -185,6 +186,7 @@ export default new Vuex.Store({
         } else {
           commit('clearOrder')
           console.log("Successfully posted order")
+          commit('setLoading', false)
         }
       })
     }
