@@ -174,10 +174,8 @@ export default new Vuex.Store({
     },
     submitOrder ({commit}) {
       commit('setLoading', true)
-      let order_2 = "order_2"
-      firebase.database().ref('orders/' + order_2).set({
-        User: 1,
-        Order: this.state.order,
+      firebase.database().ref('orders/').push({
+        Order: this.state.currentOrder,
         Price: this.state.totalPrice
       },
       function(error) {
