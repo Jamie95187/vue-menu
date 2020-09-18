@@ -24,6 +24,11 @@ Vue.use(VueRouter)
     path: '/Order',
     name: 'Order',
     component: () => import('../views/Order.vue')
+  },
+  {
+    path: '/Orders',
+    name: 'Orders',
+    component: () => import('../views/Orders.vue')
   }
 ]
 

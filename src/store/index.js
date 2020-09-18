@@ -116,6 +116,9 @@ export default new Vuex.Store({
         state.menu[i].orders = 0
         state.menu[i].active = false
       }
+    },
+    loadOrders (state, orders) {
+      state.orders = orders
     }
   },
   actions: {
@@ -189,6 +192,18 @@ export default new Vuex.Store({
           commit('setLoading', false)
         }
       })
+    },
+    loadOrders ({commit}) {
+      let orders = [];
+      firebase.database().ref('orders/').on("value", function(snapshot) {
+        for (var i = 0; i < Object.values(snapshot.val()).length; i++) {
+          orders.push(Object.values(snapshot.val())[i])
+        }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      })
+      console.log(orders)
+      commit('loadOrders', orders)
     }
   },
   getters: {
