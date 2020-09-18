@@ -46,6 +46,7 @@ export default new Vuex.Store({
     ],
     totalPrice: 0,
     currentOrder: [],
+    orders: [],
     user: null,
     loading: false,
     error: null
@@ -175,6 +176,7 @@ export default new Vuex.Store({
     submitOrder ({commit}) {
       commit('setLoading', true)
       firebase.database().ref('orders/').push({
+        User: this.state.user,
         Order: this.state.currentOrder,
         Price: this.state.totalPrice
       },
@@ -207,6 +209,9 @@ export default new Vuex.Store({
     },
     loadedOrder (state) {
       return state.currentOrder
+    },
+    loadOrders (state) {
+      return state.orders
     }
   }
 })
