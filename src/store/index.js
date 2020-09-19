@@ -196,13 +196,12 @@ export default new Vuex.Store({
     loadOrders ({commit}) {
       let orders = [];
       firebase.database().ref('orders/').on("value", function(snapshot) {
-        for (var i = 0; i < Object.values(snapshot.val()).length; i++) {
-          orders.push(Object.values(snapshot.val())[i])
+        for (const [key] of Object.entries(snapshot.val())) {
+          orders.push(key)
         }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       })
-      console.log(orders)
       commit('loadOrders', orders)
     },
     // loadOrder ({commit}) {
