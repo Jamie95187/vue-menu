@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-layout>
-      <h2>Order</h2>
+      <h2>Current Order</h2>
     </v-layout>
     <v-divider></v-divider>
     <v-list v-for="item in orderItems" :key="item[0]">
@@ -31,7 +31,7 @@
   export default {
     computed: {
       orderItems () {
-        return this.$store.getters.loadedOrder
+        return this.$store.getters.loadedCurrentOrder
       },
       totalPrice () {
         return this.$store.getters.totalPrice

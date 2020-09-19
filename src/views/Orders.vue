@@ -2,7 +2,7 @@
   <v-layout>
     <v-list v-for="order in orders" :key="order">
       <v-list-item>
-        <h3>{{ order.Price }}</h3>
+        <h3 :to="/order/ + order">{{order}}</h3>
       </v-list-item>
     </v-list>
   </v-layout>

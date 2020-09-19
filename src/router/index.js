@@ -11,24 +11,29 @@ Vue.use(VueRouter)
     component: Menu
   },
   {
-    path: '/Signup',
+    path: '/signup',
     name: 'Signup',
     component: () => import('../views/User/Signup.vue')
   },
   {
-    path: '/Signin',
+    path: '/signin',
     name: 'Signin',
     component: () => import('../views/User/Signin.vue')
   },
   {
-    path: '/Order',
+    path: '/order',
     name: 'Order',
     component: () => import('../views/Order.vue')
   },
   {
-    path: '/Orders',
+    path: '/orders',
     name: 'Orders',
     component: () => import('../views/Orders.vue')
+  },
+  {
+    path: '/order/:id',
+    name: 'OrderHistory',
+    component: () => import('../views/OrderHistory.vue')
   }
 ]
 

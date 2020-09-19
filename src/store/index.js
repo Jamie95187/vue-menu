@@ -204,7 +204,10 @@ export default new Vuex.Store({
       })
       console.log(orders)
       commit('loadOrders', orders)
-    }
+    },
+    // loadOrder ({commit}) {
+    //
+    // }
   },
   getters: {
     loadedMenu (state) {
@@ -222,11 +225,14 @@ export default new Vuex.Store({
     totalPrice (state) {
       return state.totalPrice
     },
-    loadedOrder (state) {
+    loadedCurrentOrder (state) {
       return state.currentOrder
     },
     loadOrders (state) {
       return state.orders
+    },
+    loadOrder (state) {
+      return state.order
     }
   }
 })
