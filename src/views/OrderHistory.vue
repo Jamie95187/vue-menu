@@ -1,14 +1,15 @@
 <template>
-  <div>
-    Order
-  </div>
+  <v-layout>
+    <h4> {{order.Price}} </h4>
+  </v-layout>
 </template>
 
 <script>
   export default {
     computed: {
       order () {
-        return this.$store.dispatch('loadOrder')
+        this.$store.dispatch('loadOrder', this.$route.path.substring(7))
+        return this.$store.getters.loadedOrder
       }
     }
   }

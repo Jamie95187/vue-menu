@@ -47,6 +47,7 @@ export default new Vuex.Store({
     totalPrice: 0,
     currentOrder: [],
     orders: [],
+    loadedOrder: {},
     user: null,
     loading: false,
     error: null
@@ -119,6 +120,10 @@ export default new Vuex.Store({
     },
     loadOrders (state, orders) {
       state.orders = orders
+    },
+    loadOrder (state, order) {
+      console.log(order)
+      state.loadedOrder = order
     }
   },
   actions: {
@@ -204,9 +209,15 @@ export default new Vuex.Store({
       })
       commit('loadOrders', orders)
     },
-    // loadOrder ({commit}) {
-    //
-    // }
+    loadOrder ({commit}, id) {
+      let order = {}
+      firebase.database().ref('orders/' + id).on("value", function(snapshot) {
+        order = snapshot.val()
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      })
+      commit('loadOrder', order)
+    }
   },
   getters: {
     loadedMenu (state) {
@@ -230,8 +241,8 @@ export default new Vuex.Store({
     loadOrders (state) {
       return state.orders
     },
-    loadOrder (state) {
-      return state.order
+    loadedOrder (state) {
+      return state.loadedOrder
     }
   }
 })
