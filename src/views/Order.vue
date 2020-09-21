@@ -6,7 +6,7 @@
     <v-divider></v-divider>
     <v-list v-for="item in orderItems" :key="item[0]">
       <v-list-item>
-        <h3>{{ item[0] }} : {{ item[1] }} </h3>
+        <h3>{{ item[0] }} : {{ item[1] }}</h3>
       </v-list-item>
     </v-list>
     <v-divider></v-divider>
