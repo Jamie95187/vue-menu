@@ -155,8 +155,9 @@ export default new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
-            const newUser = {
-              id: user.uid,
+            commit('setLoading', false)
+            const user = {
+              id: user.user.uid,
               orders: []
             }
             commit('setUser', newUser)
@@ -183,6 +184,7 @@ export default new Vuex.Store({
     },
     submitOrder ({commit}) {
       commit('setLoading', true)
+      console.log(this.state.user.id)
       firebase.database().ref('orders/').push({
         User: this.state.user,
         Order: this.state.currentOrder,
