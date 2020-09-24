@@ -135,8 +135,7 @@ export default new Vuex.Store({
           user => {
             commit('setLoading', false)
             const newUser = {
-              id: user.uid,
-              orders: []
+              id: user.uid
             }
             commit('setUser', newUser)
           }
@@ -156,11 +155,10 @@ export default new Vuex.Store({
         .then(
           user => {
             commit('setLoading', false)
-            const user = {
-              id: user.user.uid,
-              orders: []
+            const signedInUser = {
+              id: user.user.uid
             }
-            commit('setUser', newUser)
+            commit('setUser', signedInUser)
           }
         )
         .catch(
@@ -184,7 +182,6 @@ export default new Vuex.Store({
     },
     submitOrder ({commit}) {
       commit('setLoading', true)
-      console.log(this.state.user.id)
       firebase.database().ref('orders/').push({
         User: this.state.user,
         Order: this.state.currentOrder,
@@ -203,7 +200,17 @@ export default new Vuex.Store({
     loadOrders ({commit}) {
       let orders = [];
       firebase.database().ref('orders/').on("value", function(snapshot) {
+        for (const value of Object.values(snapshot.val())){
+          if (value.User !== null) {
+            for (const val of Object.values(value.User)) {
+              console.log(val)
+            }
+          }
+        }
+        console.log(snapshot.val())
         for (const [key] of Object.entries(snapshot.val())) {
+          // Add order to the array if it is matched with the logged in user
+          // if (this.state.user.id === key)
           orders.push(key)
         }
       }, function (errorObject) {
