@@ -204,8 +204,7 @@ export default new Vuex.Store({
           if (Object.prototype.hasOwnProperty.call(value, 'User')) {
             for (const val of Object.values(value.User)) {
               // Add order to the orders array if it is matched with the logged in user
-              console.log(this.state.user)
-              if(val === this.state.user.id) {
+              if(val === firebase.auth().currentUser.uid) {
                 orders.push(key)
               }
             }
