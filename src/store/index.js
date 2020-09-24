@@ -200,19 +200,22 @@ export default new Vuex.Store({
     loadOrders ({commit}) {
       let orders = [];
       firebase.database().ref('orders/').on("value", function(snapshot) {
-        for (const value of Object.values(snapshot.val())){
-          if (value.User !== null) {
+        for (const [key, value] of Object.entries(snapshot.val())){
+          if (Object.prototype.hasOwnProperty.call(value, 'User')) {
             for (const val of Object.values(value.User)) {
-              console.log(val)
+              // Add order to the orders array if it is matched with the logged in user
+              console.log(this.state.user)
+              if(val === this.state.user.id) {
+                orders.push(key)
+              }
             }
           }
         }
-        console.log(snapshot.val())
-        for (const [key] of Object.entries(snapshot.val())) {
-          // Add order to the array if it is matched with the logged in user
-          // if (this.state.user.id === key)
-          orders.push(key)
-        }
+        // for (const [key] of Object.entries(snapshot.val())) {
+          // Add order to the orders array if it is matched with the logged in user
+        //   // if (this.state.user.id === key)
+        //   orders.push(key)
+        // }
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       })
