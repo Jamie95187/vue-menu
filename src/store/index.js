@@ -135,7 +135,8 @@ export default new Vuex.Store({
           user => {
             commit('setLoading', false)
             const newUser = {
-              id: user.uid
+              id: user.uid,
+              orders: []
             }
             commit('setUser', newUser)
           }
@@ -156,7 +157,8 @@ export default new Vuex.Store({
           user => {
             commit('setLoading', false)
             const signedInUser = {
-              id: user.user.uid
+              id: user.user.uid,
+              orders: []
             }
             commit('setUser', signedInUser)
           }
@@ -199,25 +201,26 @@ export default new Vuex.Store({
     },
     loadOrders ({commit}) {
       let orders = [];
-      firebase.database().ref('orders/').on("value", function(snapshot) {
-        for (const [key, value] of Object.entries(snapshot.val())){
-          if (Object.prototype.hasOwnProperty.call(value, 'User')) {
-            for (const val of Object.values(value.User)) {
-              // Add order to the orders array if it is matched with the logged in user
-              if(val === firebase.auth().currentUser.uid) {
-                orders.push(key)
+      var user = firebase.auth().currentUser;
+      if (user != null) {
+        firebase.database().ref('orders/').on("value", function(snapshot) {
+          for (const [key, value] of Object.entries(snapshot.val())){
+            if (Object.prototype.hasOwnProperty.call(value, 'User')) {
+              for (const val of Object.values(value.User)) {
+                // Add order to the orders array if it is matched with the logged in user
+                if(val === user.uid) {
+                  orders.push(key)
+                }
               }
             }
           }
-        }
-        // for (const [key] of Object.entries(snapshot.val())) {
-          // Add order to the orders array if it is matched with the logged in user
-        //   // if (this.state.user.id === key)
-        //   orders.push(key)
-        // }
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      })
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        })
+      } else {
+        orders = [];
+      }
+
       commit('loadOrders', orders)
     },
     loadOrder ({commit}, id) {
