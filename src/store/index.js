@@ -152,7 +152,6 @@ export default new Vuex.Store({
     signUserIn ({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
-      console.log(firebase.auth().currentUser)
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
@@ -185,6 +184,8 @@ export default new Vuex.Store({
     },
     submitOrder ({commit}) {
       commit('setLoading', true)
+      var user = firebase.auth().currentUser;
+      let updatedOrders = [];
       firebase.database().ref('orders/').push({
         User: this.state.user,
         Order: this.state.currentOrder,
@@ -198,14 +199,22 @@ export default new Vuex.Store({
           console.log("Successfully posted order")
           commit('setLoading', false)
         }
-      })
-        .then((response) => console.log(response))
-      var user = firebase.auth().currentUser;
-      if (user != null) {
-        user.updateProfile({
-          orders: []
+      }).then(function(response){
+          if (user != null) {
+            user.providerData.forEach(function(profile){
+              console.log(profile)
+            })
+            user.updateProfile({
+              orders: updatedOrders.push(response.path.pieces_[1])
+            }).then(function(){
+                console.log("Update Successful!")
+              }).catch(function(error) {
+                console.log(error)
+              })
+          }}
+        ).catch(function(error){
+          console.log(error)
         })
-      }
     },
     loadOrders ({commit}) {
       let orders = [];
