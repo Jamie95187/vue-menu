@@ -152,6 +152,7 @@ export default new Vuex.Store({
     signUserIn ({commit}, payload) {
       commit('setLoading', true)
       commit('clearError')
+      console.log(firebase.auth().currentUser)
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
@@ -198,6 +199,13 @@ export default new Vuex.Store({
           commit('setLoading', false)
         }
       })
+        .then((response) => console.log(response))
+      var user = firebase.auth().currentUser;
+      if (user != null) {
+        user.updateProfile({
+          orders: []
+        })
+      }
     },
     loadOrders ({commit}) {
       let orders = [];
