@@ -136,7 +136,7 @@ export default new Vuex.Store({
             commit('setLoading', false)
             const newUser = {
               id: user.uid,
-              orders: []
+              phoneNumber: []
             }
             commit('setUser', newUser)
           }
@@ -158,7 +158,7 @@ export default new Vuex.Store({
             commit('setLoading', false)
             const signedInUser = {
               id: user.user.uid,
-              orders: []
+              phoneNumber: []
             }
             commit('setUser', signedInUser)
           }
@@ -205,7 +205,7 @@ export default new Vuex.Store({
               console.log(profile)
             })
             user.updateProfile({
-              orders: updatedOrders.push(response.path.pieces_[1])
+              phoneNumber: updatedOrders.push(response.path.pieces_[1])
             }).then(function(){
                 console.log("Update Successful!")
               }).catch(function(error) {
