@@ -155,11 +155,11 @@ export default new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
-            commit('setLoading', false)
             const signedInUser = {
               id: user.user.uid,
               phoneNumber: []
             }
+            commit('setLoading', false)
             commit('setUser', signedInUser)
           }
         )
@@ -205,7 +205,7 @@ export default new Vuex.Store({
               console.log(profile)
             })
             user.updateProfile({
-              phoneNumber: updatedOrders.push(response.path.pieces_[1])
+              displayName: updatedOrders.push(response.path.pieces_[1])
             }).then(function(){
                 console.log("Update Successful!")
               }).catch(function(error) {
@@ -248,7 +248,16 @@ export default new Vuex.Store({
         console.log("The read failed: " + errorObject.code);
       })
       commit('loadOrder', order)
-    }
+    },
+    // signUserOut ({commit}) {
+    //   console.log("log out")
+    //   firebase.auth().signOut().then(function(){
+    //     console.log("Sucessfully Signed Out!")
+    //     commit('setuser', null)
+    //   }).catch(function(error){
+    //     console.log(error)
+    //   });
+    // }
   },
   getters: {
     loadedMenu (state) {

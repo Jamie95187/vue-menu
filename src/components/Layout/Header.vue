@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-main>
     <v-navigation-drawer
       v-model="sideNav"
       absolute
@@ -9,7 +9,9 @@
         <v-list-item
           v-for="item in menuItems"
           :key="item.title"
-          :to="item.link">
+          :to="item.link"
+          @click="item.click"
+          >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -38,12 +40,11 @@
           {{ item.title }}
         </v-btn>
       </v-app-bar>
-    </div>
+    </v-main>
 </template>
 
 <script>
   export default {
-    name: "Header",
     data: () => ({
       sideNav: false,
     }),
@@ -61,10 +62,10 @@
         if (this.userIsAuthenticated) {
           menuItems = [
             { icon: 'supervisor_account', title: 'View Order', link: '/order'},
-            { icon: 'person', title: 'Profile', link: '/profile'},
             { icon: 'fastfood', title: 'Menu', link: '/'},
             { icon: 'description', title: 'Order', link: '/order'},
-            { icon: 'shopping_bag', title: 'Order History', link: '/orders'}
+            { icon: 'shopping_bag', title: 'Order History', link: '/orders'},
+            { icon: 'exit-to-app', title: 'Sign Out', link: '/', click: "signOut()"}
           ]
         }
         return menuItems
@@ -72,7 +73,12 @@
       userIsAuthenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
-    }
+    },
+    // methods: {
+    //   signOut() {
+    //     this.$store.dispatch('signUserOut')
+    //   }
+    // }
   }
 
 </script>
