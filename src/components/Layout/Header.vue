@@ -1,5 +1,5 @@
 <template>
-  <v-main>
+  <v-layout>
     <v-navigation-drawer
       v-model="sideNav"
       absolute
@@ -49,7 +49,7 @@
             Sign Out
         </v-btn>
       </v-app-bar>
-    </v-main>
+    </v-layout>
 </template>
 
 <script>
