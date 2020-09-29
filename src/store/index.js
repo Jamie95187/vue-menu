@@ -249,15 +249,15 @@ export default new Vuex.Store({
       })
       commit('loadOrder', order)
     },
-    // signUserOut ({commit}) {
-    //   console.log("log out")
-    //   firebase.auth().signOut().then(function(){
-    //     console.log("Sucessfully Signed Out!")
-    //     commit('setuser', null)
-    //   }).catch(function(error){
-    //     console.log(error)
-    //   });
-    // }
+    signUserOut ({commit}) {
+      console.log("log out")
+      firebase.auth().signOut().then(function(){
+        console.log("Sucessfully Signed Out!")
+        commit('setUser', null)
+      }).catch(function(error){
+        console.log(error)
+      });
+    }
   },
   getters: {
     loadedMenu (state) {

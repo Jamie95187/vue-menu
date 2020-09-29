@@ -10,7 +10,6 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.link"
-          @click="item.click"
           >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -39,6 +38,16 @@
           </v-icon>
           {{ item.title }}
         </v-btn>
+        <v-btn
+          text class="white--text"
+          key="Sign Out"
+          to="/"
+          @click="signOut()">
+          <v-icon left>
+            mdi-exit-to-app
+          </v-icon>
+            Sign Out
+        </v-btn>
       </v-app-bar>
     </v-main>
 </template>
@@ -56,16 +65,14 @@
           { icon: 'face', title: 'Sign up', link: '/signup'},
           { icon: 'lock_open', title: 'Sign in', link: '/signin'},
           { icon: 'fastfood', title: 'Menu', link: '/'},
-          { icon: 'description', title: 'Order', link: '/order'},
-          { icon: 'shopping_bag', title: 'Order History', link: '/orders'}
+          { icon: 'mdi-basket', title: 'View Order', link: '/order'},
+          { icon: 'mdi-history', title: 'Order History', link: '/orders'}
         ]
         if (this.userIsAuthenticated) {
           menuItems = [
-            { icon: 'supervisor_account', title: 'View Order', link: '/order'},
             { icon: 'fastfood', title: 'Menu', link: '/'},
-            { icon: 'description', title: 'Order', link: '/order'},
-            { icon: 'shopping_bag', title: 'Order History', link: '/orders'},
-            { icon: 'exit-to-app', title: 'Sign Out', link: '/', click: "signOut()"}
+            { icon: 'mdi-basket', title: 'View Order', link: '/order'},
+            { icon: 'mdi-history', title: 'Order History', link: '/orders'}
           ]
         }
         return menuItems
@@ -74,11 +81,11 @@
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
     },
-    // methods: {
-    //   signOut() {
-    //     this.$store.dispatch('signUserOut')
-    //   }
-    // }
+    methods: {
+      signOut() {
+        this.$store.dispatch('signUserOut')
+      }
+    }
   }
 
 </script>
