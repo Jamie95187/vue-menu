@@ -18,6 +18,7 @@
   export default {
     computed: {
       order () {
+        console.log(this.$store.getters.user)
         this.$store.dispatch('loadOrder', this.$route.path.substring(7))
         return this.$store.getters.loadedOrder
       }

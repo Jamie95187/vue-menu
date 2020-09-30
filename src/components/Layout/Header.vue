@@ -39,6 +39,7 @@
           {{ item.title }}
         </v-btn>
         <v-btn
+          v-if="userIsAuthenticated"
           text class="white--text"
           key="Sign Out"
           to="/"

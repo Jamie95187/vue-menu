@@ -122,8 +122,10 @@ export default new Vuex.Store({
       state.orders = orders
     },
     loadOrder (state, order) {
-      console.log(order)
       state.loadedOrder = order
+    },
+    clearOrders (state) {
+      state.orders = [];
     }
   },
   actions: {
@@ -253,10 +255,14 @@ export default new Vuex.Store({
       console.log("log out")
       firebase.auth().signOut().then(function(){
         console.log("Sucessfully Signed Out!")
+        commit('clearOrders')
         commit('setUser', null)
       }).catch(function(error){
         console.log(error)
       });
+    },
+    clearOrders ({commit}) {
+      commit('clearOrders')
     }
   },
   getters: {
