@@ -12,6 +12,9 @@
   export default {
     computed: {
       orders () {
+        if (!this.$store.getters.user) {
+          this.$store.dispatch('clearOrders')
+        }
         this.$store.dispatch('loadOrders')
         return this.$store.getters.loadOrders
       }
