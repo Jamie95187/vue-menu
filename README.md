@@ -7,8 +7,9 @@ An application where users can signup and order their favourite sushi dishes. Us
 ## Technologies used
 
 JavaScript - The JavaScript library for building web interfaces is Vue version 2.6.11.
-
+Backend database - Google firebase is used for user authentication and storing backend data
 State control - The Vuex library was used for state management.
+Styling - The Vuetify library was used for styling
 
 ## Project setup
 
