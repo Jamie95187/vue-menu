@@ -42,7 +42,6 @@ As a user,
 so that I can order my favourite sushi dishes
 I would like to view the menu
 
-
 As a user,
 so that I can see what I've ordered
 I would like to view my current order
