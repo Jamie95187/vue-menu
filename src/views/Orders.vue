@@ -1,10 +1,16 @@
 <template>
   <v-layout>
-    <v-list v-for="order in orders" :key="order">
-      <v-list-item>
-        <v-btn :to="/order/ + order">{{order}}</v-btn>
-      </v-list-item>
-    </v-list>
+    <v-row
+      align="center"
+      justify="center">
+      <v-list v-for="order in orders"
+        :key="order"
+        >
+        <v-list-item>
+          <v-btn :to="/order/ + order">{{order}}</v-btn>
+        </v-list-item>
+      </v-list>
+    </v-row>
   </v-layout>
 </template>
 
