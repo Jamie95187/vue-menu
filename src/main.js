@@ -28,8 +28,6 @@ firebase.initializeApp({
 
 export const db = firebase.firestore();
 
-console.log(Vue.version)
-
 new Vue({
   vuetify,
   store,
