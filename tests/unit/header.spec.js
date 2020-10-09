@@ -1,5 +1,5 @@
 // Utilities
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 
 // Components
 import Header from '@/components/Layout/Header.vue'
@@ -9,10 +9,9 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify';
 
-// Vue.use(Vuetify);
-
 const localVue = createLocalVue()
 
+// localVue.use(Vuetify)
 localVue.use(Vuex)
 
 describe('Header.vue', () => {
@@ -20,14 +19,30 @@ describe('Header.vue', () => {
   let actions;
   let store;
   let vuetify;
+  let stubs;
 
-  beforeEach(() => {
+  beforeAll(() => {
     getters = {
       userIsAuthenticated: () => false
     }
     actions = {
       signUserOut: jest.fn()
     }
+    stubs = [
+      'router-link',
+      'v-layout',
+      'v-navigation-drawer',
+      'v-list', 'v-list-item',
+      'v-item-action',
+      'v-icon',
+      'v-list-item-content',
+      'v-app-bar',
+      'v-toolbar-title',
+      'v-app-bar-nav-icon',
+      'v-spacer',
+      'v-btn',
+      'v-list-item-action'
+    ]
     vuetify = new Vuetify()
     store = new Vuex.Store({
       actions,
@@ -36,8 +51,9 @@ describe('Header.vue', () => {
   })
 
   it('renders Header Component', () => {
-    const wrapper = mount(Header, { store, localVue, vuetify});
-    expect(wrapper.exists()).toBe(true)
+
+    const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs});
+    expect(wrapper).toBeTruthy()
   })
 
 })

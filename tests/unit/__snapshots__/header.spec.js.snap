@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue renders Header Component 1`] = `
+<div class="layout">
+  <aside class="v-navigation-drawer v-navigation-drawer--absolute v-navigation-drawer--close v-navigation-drawer--is-mobile v-navigation-drawer--temporary theme--light" style="height: 100%; top: 0px; transform: translateX(-100%); width: 256px;">
+    <div class="v-navigation-drawer__content">
+      <div role="list" class="v-list v-sheet theme--light">
+        <router-link tabindex="0" role="listitem" class="v-list-item v-list-item--link theme--light">
+          <div class="v-list-item__action"><i aria-hidden="true" class="v-icon notranslate material-icons theme--light">face</i></div>
+          <div class="v-list-item__content">Sign up</div>
+        </router-link>
+        <router-link tabindex="0" role="listitem" class="v-list-item v-list-item--link theme--light">
+          <div class="v-list-item__action"><i aria-hidden="true" class="v-icon notranslate material-icons theme--light">lock_open</i></div>
+          <div class="v-list-item__content">Sign in</div>
+        </router-link>
+        <router-link tabindex="0" role="listitem" class="v-list-item v-list-item--link theme--light">
+          <div class="v-list-item__action"><i aria-hidden="true" class="v-icon notranslate material-icons theme--light">fastfood</i></div>
+          <div class="v-list-item__content">Menu</div>
+        </router-link>
+        <router-link tabindex="0" role="listitem" class="v-list-item v-list-item--link theme--light">
+          <div class="v-list-item__action"><i aria-hidden="true" class="v-icon notranslate mdi mdi-basket theme--light"></i></div>
+          <div class="v-list-item__content">View Order</div>
+        </router-link>
+        <router-link tabindex="0" role="listitem" class="v-list-item v-list-item--link theme--light">
+          <div class="v-list-item__action"><i aria-hidden="true" class="v-icon notranslate mdi mdi-history theme--light"></i></div>
+          <div class="v-list-item__content">Order History</div>
+        </router-link>
+      </div>
+    </div>
+    <div class="v-navigation-drawer__border"></div>
+  </aside>
+  <header class="primary v-sheet theme--light v-toolbar v-app-bar v-app-bar--fixed" style="height: 64px; margin-top: 0px; transform: translateY(0px); left: 0px; right: 0px;">
+    <div class="v-toolbar__content" style="height: 64px;">
+      <router-link to="/" tag="span" style="cursor: pointer;">
+        <div class="v-toolbar__title white--text">
+          Sushi Menu
+        </div>
+      </router-link> <button type="button" class="v-app-bar__nav-icon v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate mdi mdi-menu theme--light"></i></span></button>
+      <div class="spacer"></div>
+      <router-link class="white--text v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate v-icon--left material-icons theme--light">face</i>
+        Sign up
+      </span></router-link>
+      <router-link class="white--text v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate v-icon--left material-icons theme--light">lock_open</i>
+        Sign in
+      </span></router-link>
+      <router-link class="white--text v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate v-icon--left material-icons theme--light">fastfood</i>
+        Menu
+      </span></router-link>
+      <router-link class="white--text v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate v-icon--left mdi mdi-basket theme--light"></i>
+        View Order
+      </span></router-link>
+      <router-link class="white--text v-btn v-btn--flat v-btn--router v-btn--text theme--light v-size--default"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate v-icon--left mdi mdi-history theme--light"></i>
+        Order History
+      </span></router-link>
+      <!---->
+    </div>
+  </header>
+</div>
+`;
