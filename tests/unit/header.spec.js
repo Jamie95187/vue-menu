@@ -51,8 +51,7 @@ describe('Header.vue', () => {
   })
 
   it('renders Header Component', () => {
-
-    const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs});
+    const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
     expect(wrapper).toBeTruthy()
   })
 
