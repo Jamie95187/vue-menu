@@ -1,5 +1,5 @@
 // Utilities
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils'
 
 // Components
 import Header from '@/components/Layout/Header.vue'
@@ -23,7 +23,7 @@ describe('Header.vue', () => {
 
   beforeAll(() => {
     getters = {
-      userIsAuthenticated: () => false
+      userIsAuthenticated: () => true
     }
     actions = {
       signUserOut: jest.fn()
@@ -53,6 +53,11 @@ describe('Header.vue', () => {
   it('renders Header Component', () => {
     const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
     expect(wrapper).toBeTruthy()
+  })
+
+  it('should call signUserOut once when clicked', () => {
+    const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
+    wrapper.find('v-btn').trigger('click')
   })
 
 })
