@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header.vue should match match the snapshot 1`] = `
+<v-layout-stub>
+  <v-navigation-drawer-stub absolute="" temporary="">
+    <v-list-stub>
+      <v-list-item-stub to="/signup">
+        <v-list-item-action-stub>
+          <v-icon-stub>face</v-icon-stub>
+        </v-list-item-action-stub>
+        <v-list-item-content-stub>Sign up</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub to="/signin">
+        <v-list-item-action-stub>
+          <v-icon-stub>lock_open</v-icon-stub>
+        </v-list-item-action-stub>
+        <v-list-item-content-stub>Sign in</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub to="/">
+        <v-list-item-action-stub>
+          <v-icon-stub>fastfood</v-icon-stub>
+        </v-list-item-action-stub>
+        <v-list-item-content-stub>Menu</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub to="/order">
+        <v-list-item-action-stub>
+          <v-icon-stub>mdi-basket</v-icon-stub>
+        </v-list-item-action-stub>
+        <v-list-item-content-stub>View Order</v-list-item-content-stub>
+      </v-list-item-stub>
+      <v-list-item-stub to="/orders">
+        <v-list-item-action-stub>
+          <v-icon-stub>mdi-history</v-icon-stub>
+        </v-list-item-action-stub>
+        <v-list-item-content-stub>Order History</v-list-item-content-stub>
+      </v-list-item-stub>
+    </v-list-stub>
+  </v-navigation-drawer-stub>
+  <v-app-bar-stub app="" class="primary">
+    <router-link-stub to="/" tag="span" style="cursor: pointer;">
+      <v-toolbar-title-stub class="white--text">
+        Sushi Menu
+      </v-toolbar-title-stub>
+    </router-link-stub>
+    <v-app-bar-nav-icon-stub></v-app-bar-nav-icon-stub>
+    <v-spacer-stub></v-spacer-stub>
+    <v-btn-stub text="" to="/signup" class="white--text">
+      <v-icon-stub left="">
+        face
+      </v-icon-stub>
+      Sign up
+    </v-btn-stub>
+    <v-btn-stub text="" to="/signin" class="white--text">
+      <v-icon-stub left="">
+        lock_open
+      </v-icon-stub>
+      Sign in
+    </v-btn-stub>
+    <v-btn-stub text="" to="/" class="white--text">
+      <v-icon-stub left="">
+        fastfood
+      </v-icon-stub>
+      Menu
+    </v-btn-stub>
+    <v-btn-stub text="" to="/order" class="white--text">
+      <v-icon-stub left="">
+        mdi-basket
+      </v-icon-stub>
+      View Order
+    </v-btn-stub>
+    <v-btn-stub text="" to="/orders" class="white--text">
+      <v-icon-stub left="">
+        mdi-history
+      </v-icon-stub>
+      Order History
+    </v-btn-stub>
+    <!---->
+  </v-app-bar-stub>
+</v-layout-stub>
+`;

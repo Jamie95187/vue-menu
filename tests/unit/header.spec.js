@@ -55,9 +55,15 @@ describe('Header.vue', () => {
     expect(wrapper).toBeTruthy()
   })
 
-  it('should call signUserOut once when clicked', () => {
-    const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
-    wrapper.find('v-btn').trigger('click')
+  it('should match match the snapshot', () => {
+    const wrapper = mount(Header, { store, localVue, vuetify, stubs});
+    expect(wrapper.html()).toMatchSnapshot()
   })
+
+  // it('should call signUserOut once when clicked', () => {
+  //   const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
+  //   console.log(wrapper.html())
+  //   wrapper.find('v-btn').trigger('click')
+  // })
 
 })
