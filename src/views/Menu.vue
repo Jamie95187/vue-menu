@@ -12,7 +12,7 @@
                 <v-img
                   height="200"
                   width="200"
-                  src="../assets/salmon-sashimi.png"
+                  :src="require('../assets/' + menuItem.imageUrl)"
                 ></v-img>
               </v-col>
               <v-col class="pl-0 text-center">

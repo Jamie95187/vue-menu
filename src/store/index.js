@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     menu: [
       {
-        imageUrl: '../assets/salmon-sashimi.png',
+        imageUrl: 'salmon-sashimi.png',
         id: '1',
         title: 'Salmon Sashimi',
         description: 'A lovely fresh salmon sashimi - £8',
@@ -17,7 +17,7 @@ export default new Vuex.Store({
         active: false
       },
       {
-        imageUrl: '../assets/tuna-sashimi.jpg',
+        imageUrl: 'tuna-sashimi.jpg',
         id: '2',
         title: 'Tuna Sashimi',
         description: 'A lovely fresh tuna sashimi - £7',
@@ -26,7 +26,7 @@ export default new Vuex.Store({
         active: false
       },
       {
-        imageUrl: '../assets/tuna-sashimi.jpg',
+        imageUrl: 'tuna-sashimi.jpg',
         id: '3',
         title: 'Cod Sashimi',
         description: 'A lovely fresh Cod sashimi - £8',
@@ -35,7 +35,7 @@ export default new Vuex.Store({
         active: false
       },
       {
-        imageUrl: '../assets/salmon-sashimi.png',
+        imageUrl: 'salmon-sashimi.png',
         id: '4',
         title: 'Sea Bream Sashimi',
         description: 'A lovely fresh Sea Bream sashimi - £9',
