@@ -26,7 +26,7 @@ export default new Vuex.Store({
         active: false
       },
       {
-        imageUrl: 'tuna-sashimi.jpg',
+        imageUrl: 'cod-sashimi.jpg',
         id: '3',
         title: 'Cod Sashimi',
         description: 'A lovely fresh Cod sashimi - £8',
@@ -35,7 +35,7 @@ export default new Vuex.Store({
         active: false
       },
       {
-        imageUrl: 'salmon-sashimi.png',
+        imageUrl: 'seabream-sashimi.jpg',
         id: '4',
         title: 'Sea Bream Sashimi',
         description: 'A lovely fresh Sea Bream sashimi - £9',
