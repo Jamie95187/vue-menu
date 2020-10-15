@@ -59,11 +59,5 @@ describe('Header.vue', () => {
     const wrapper = mount(Header, { store, localVue, vuetify, stubs});
     expect(wrapper.html()).toMatchSnapshot()
   })
-
-  // it('should call signUserOut once when clicked', () => {
-  //   const wrapper = shallowMount(Header, { store, localVue, vuetify, stubs });
-  //   console.log(wrapper.html())
-  //   wrapper.find('v-btn').trigger('click')
-  // })
-
+  
 })

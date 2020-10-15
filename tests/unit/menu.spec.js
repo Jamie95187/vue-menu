@@ -1,5 +1,5 @@
 // Utilities
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue, mount } from '@vue/test-utils'
 
 // Components
 import Menu from '@/views/Menu.vue'
@@ -47,8 +47,14 @@ describe('Menu.vue', () => {
   })
 
   it('renders Menu Component', () => {
-    const wrapper = shallowMount(Menu, { store, localVue, vuetify, stubs })
+    const wrapper = shallowMount(Menu, { store, localVue, vuetify, stubs });
     expect(wrapper.exists()).toBe(true)
+  })
+
+  it('should have the title menu', () => {
+    const wrapper = mount(Menu, { store, localVue, vuetify, stubs });
+    const title = wrapper.find('h1')
+    expect(title.text()).toBe('Menu')
   })
 
 })
