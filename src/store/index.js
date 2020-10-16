@@ -4,6 +4,83 @@ import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
+export const mutations = {
+  setUser (state, payload) {
+    state.user = payload
+  },
+  setLoading (state, payload) {
+    state.loading = payload
+  },
+  setError (state, payload){
+    state.error = payload
+  },
+  clearError (state) {
+    state.error = null
+  },
+  addDish (state, item) {
+    for (var i = 0; i < state.menu.length; i++) {
+      if (state.menu[i].title === item) {
+        state.menu[i].orders++
+        state.menu[i].active = true
+        state.totalPrice = state.totalPrice + state.menu[i].price
+      }
+    }
+  },
+  removeDish (state, item) {
+    for (var i = 0; i < state.menu.length; i++) {
+      if (state.menu[i].title === item) {
+        state.menu[i].orders--
+        state.totalPrice = state.totalPrice - state.menu[i].price
+        if (state.menu[i].orders === 0) {
+          state.menu[i].active = false
+        }
+      }
+    }
+  },
+  updateOrderAdd (state, item) {
+    let contain = false
+    let idx = 0
+    for (var i = 0; i < state.currentOrder.length; i++) {
+      if (state.currentOrder[i][0] === item) {
+        contain = true
+        idx = i
+      }
+    }
+    if (contain === true) {
+      state.currentOrder[idx][1]++
+    } else {
+      state.currentOrder.push([item, 1])
+    }
+  },
+  updateOrderRemove (state, item) {
+    for (var i = 0; i < state.currentOrder.length; i++) {
+      if (state.currentOrder[i][0] === item) {
+        state.currentOrder[i][1]--
+        if (state.currentOrder[i][1] === 0) {
+          state.currentOrder.splice(i,i)
+        }
+      }
+    }
+  },
+  clearOrder (state) {
+    state.currentOrder = [];
+    state.totalPrice = 0;
+    for (var i = 0; i < state.menu.length; i++){
+      state.menu[i].orders = 0
+      state.menu[i].active = false
+    }
+  },
+  loadOrders (state, orders) {
+    state.orders = orders
+  },
+  loadOrder (state, order) {
+    state.loadedOrder = order
+  },
+  clearOrders (state) {
+    state.orders = [];
+  }
+}
+
 export default new Vuex.Store({
   state: {
     menu: [
@@ -52,82 +129,7 @@ export default new Vuex.Store({
     loading: false,
     error: null
   },
-  mutations: {
-    setUser (state, payload) {
-      state.user = payload
-    },
-    setLoading (state, payload) {
-      state.loading = payload
-    },
-    setError (state, payload){
-      state.error = payload
-    },
-    clearError (state) {
-      state.error = null
-    },
-    addDish (state, item) {
-      for (var i = 0; i < state.menu.length; i++) {
-        if (state.menu[i].title === item) {
-          state.menu[i].orders++
-          state.menu[i].active = true
-          state.totalPrice = state.totalPrice + state.menu[i].price
-        }
-      }
-    },
-    removeDish (state, item) {
-      for (var i = 0; i < state.menu.length; i++) {
-        if (state.menu[i].title === item) {
-          state.menu[i].orders--
-          state.totalPrice = state.totalPrice - state.menu[i].price
-          if (state.menu[i].orders === 0) {
-            state.menu[i].active = false
-          }
-        }
-      }
-    },
-    updateOrderAdd (state, item) {
-      let contain = false
-      let idx = 0
-      for (var i = 0; i < state.currentOrder.length; i++) {
-        if (state.currentOrder[i][0] === item) {
-          contain = true
-          idx = i
-        }
-      }
-      if (contain === true) {
-        state.currentOrder[idx][1]++
-      } else {
-        state.currentOrder.push([item, 1])
-      }
-    },
-    updateOrderRemove (state, item) {
-      for (var i = 0; i < state.currentOrder.length; i++) {
-        if (state.currentOrder[i][0] === item) {
-          state.currentOrder[i][1]--
-          if (state.currentOrder[i][1] === 0) {
-            state.currentOrder.splice(i,i)
-          }
-        }
-      }
-    },
-    clearOrder (state) {
-      state.currentOrder = [];
-      state.totalPrice = 0;
-      for (var i = 0; i < state.menu.length; i++){
-        state.menu[i].orders = 0
-        state.menu[i].active = false
-      }
-    },
-    loadOrders (state, orders) {
-      state.orders = orders
-    },
-    loadOrder (state, order) {
-      state.loadedOrder = order
-    },
-    clearOrders (state) {
-      state.orders = [];
-    }
-  },
+  mutations,
   actions: {
     signUserUp({commit}, payload) {
       commit('setLoading', true)
@@ -137,8 +139,7 @@ export default new Vuex.Store({
           user => {
             commit('setLoading', false)
             const newUser = {
-              id: user.uid,
-              phoneNumber: []
+              id: user.uid
             }
             commit('setUser', newUser)
           }
