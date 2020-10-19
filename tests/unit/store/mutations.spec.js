@@ -1,7 +1,13 @@
 import { mutations } from '../../../src/store/index.js'
 
 // destructure assign `mutations`
-const { setUser, setLoading, setError, clearError } = mutations
+const {
+    setUser,
+    setLoading,
+    setError,
+    clearError,
+    addDish
+  } = mutations
 
 describe ('mutations', () => {
 
@@ -42,6 +48,24 @@ describe ('mutations', () => {
     expect(state.error).toEqual("Loading Error")
     clearError(state)
     expect(state.error).toEqual(null)
+  })
+
+  it('ADDDISH', () => {
+    const menu = [
+      {title: "dish1", price: 1, orders: 0, active: false},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ]
+    const state = { menu: menu, totalPrice: 0 }
+
+    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 0, active: false}, {title: "dish2",price: 2, orders: 1, active: true}])
+    expect(state.totalPrice).toEqual(0)
+    addDish(state, "dish1")
+    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 1, active: true}, {title: "dish2",price: 2, orders: 1, active: true}])
+    expect(state.totalPrice).toEqual(1)
+    addDish(state, "dish2")
+    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 1, active: true}, {title: "dish2",price: 2, orders: 2, active: true}])
+    expect(state.totalPrice).toEqual(3)
+    addDish(state, "dish2")
   })
 
 })
