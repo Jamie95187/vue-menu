@@ -1,7 +1,7 @@
 import { mutations } from '../../../src/store/index.js'
 
 // destructure assign `mutations`
-const { setUser, setLoading, setError } = mutations
+const { setUser, setLoading, setError, clearError } = mutations
 
 describe ('mutations', () => {
 
@@ -34,6 +34,14 @@ describe ('mutations', () => {
     expect(state.error).toEqual(null)
     setError(state, errorMessage)
     expect(state.error).toEqual("Loading Error")
+  })
+
+  it('CLEARERROR', () => {
+    const state = {error: "Loading Error"}
+
+    expect(state.error).toEqual("Loading Error")
+    clearError(state)
+    expect(state.error).toEqual(null)
   })
 
 })
