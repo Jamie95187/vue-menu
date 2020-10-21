@@ -6,7 +6,8 @@ const {
     setLoading,
     setError,
     clearError,
-    addDish
+    addDish,
+    removeDish
   } = mutations
 
 describe ('mutations', () => {
@@ -55,17 +56,53 @@ describe ('mutations', () => {
       {title: "dish1", price: 1, orders: 0, active: false},
       {title: "dish2", price: 2, orders: 1, active: true}
     ]
-    const state = { menu: menu, totalPrice: 0 }
+    const state = { menu: menu, totalPrice: 2 }
 
-    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 0, active: false}, {title: "dish2",price: 2, orders: 1, active: true}])
-    expect(state.totalPrice).toEqual(0)
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 0, active: false},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ])
+    expect(state.totalPrice).toEqual(2)
     addDish(state, "dish1")
-    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 1, active: true}, {title: "dish2",price: 2, orders: 1, active: true}])
-    expect(state.totalPrice).toEqual(1)
-    addDish(state, "dish2")
-    expect(state.menu).toEqual([{title: "dish1",price: 1, orders: 1, active: true}, {title: "dish2",price: 2, orders: 2, active: true}])
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 1, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ])
     expect(state.totalPrice).toEqual(3)
     addDish(state, "dish2")
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 1, active: true},
+      {title: "dish2", price: 2, orders: 2, active: true}
+    ])
+    expect(state.totalPrice).toEqual(5)
+    addDish(state, "dish2")
+  })
+
+  it('REMOVEDISH', () => {
+    const menu = [
+      {title: "dish1", price: 1, orders: 3, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ]
+
+    const state = { menu: menu, totalPrice: 5 }
+
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 3, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ])
+    expect(state.totalPrice).toEqual(5)
+    removeDish(state, "dish1")
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 2, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ])
+    expect(state.totalPrice).toEqual(4)
+    removeDish(state, "dish2")
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 2, active: true},
+      {title: "dish2", price: 2, orders: 0, active: false}
+    ])
+    expect(state.totalPrice).toEqual(2)
   })
 
 })
