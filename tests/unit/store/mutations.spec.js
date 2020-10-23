@@ -8,7 +8,8 @@ const {
     clearError,
     addDish,
     removeDish,
-    updateOrderAdd
+    updateOrderAdd,
+    updateOrderRemove
   } = mutations
 
 describe ('mutations', () => {
@@ -117,6 +118,19 @@ describe ('mutations', () => {
     expect(state.currentOrder).toEqual([["dish1", 2]])
     updateOrderAdd(state, "dish2")
     expect(state.currentOrder).toEqual([["dish1", 2], ["dish2", 1]])
+  })
+
+  it('UPDATEORDERREMOVE', () => {
+    const currentOrder = [["dish1", 3],["dish2", 2]]
+    const state = { currentOrder: currentOrder }
+
+    expect(state.currentOrder).toEqual([["dish1", 3],["dish2", 2]])
+    updateOrderRemove(state, "dish1")
+    expect(state.currentOrder).toEqual([["dish1", 2],["dish2", 2]])
+    updateOrderRemove(state, "dish1")
+    expect(state.currentOrder).toEqual([["dish1", 1],["dish2", 2]])
+    updateOrderRemove(state, "dish2")
+    expect(state.currentOrder).toEqual([["dish1", 1], ["dish2", 1]])
   })
 
 })
