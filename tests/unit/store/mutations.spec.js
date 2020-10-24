@@ -9,7 +9,8 @@ const {
     addDish,
     removeDish,
     updateOrderAdd,
-    updateOrderRemove
+    updateOrderRemove,
+    clearOrder
   } = mutations
 
 describe ('mutations', () => {
@@ -131,6 +132,27 @@ describe ('mutations', () => {
     expect(state.currentOrder).toEqual([["dish1", 1],["dish2", 2]])
     updateOrderRemove(state, "dish2")
     expect(state.currentOrder).toEqual([["dish1", 1], ["dish2", 1]])
+  }),
+
+  it('CLEARORDER', () => {
+    const menu = [
+      {title: "dish1", price: 1, orders: 3, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ]
+    const currentOrder = [["dish1", 3],["dish2", 1]]
+    const state = { menu: menu, currentOrder: currentOrder }
+
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 3, active: true},
+      {title: "dish2", price: 2, orders: 1, active: true}
+    ])
+    expect(state.currentOrder).toEqual([["dish1", 3],["dish2", 1]])
+    clearOrder(state)
+    expect(state.menu).toEqual([
+      {title: "dish1", price: 1, orders: 0, active: false},
+      {title: "dish2", price: 2, orders: 0, active: false}
+    ])
+    expect(state.currentOrder).toEqual([])
   })
 
 })
