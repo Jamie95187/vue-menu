@@ -10,7 +10,8 @@ const {
     removeDish,
     updateOrderAdd,
     updateOrderRemove,
-    clearOrder
+    clearOrder,
+    loadOrders
   } = mutations
 
 describe ('mutations', () => {
@@ -153,6 +154,15 @@ describe ('mutations', () => {
       {title: "dish2", price: 2, orders: 0, active: false}
     ])
     expect(state.currentOrder).toEqual([])
+  }),
+
+  it('LOADORDERS', () => {
+    const orders = ["order1", "order2", "order3"];
+    const state = { orders: [] }
+
+    expect(state.orders).toEqual([])
+    loadOrders(state, orders)
+    expect(state.orders).toEqual(["order1", "order2", "order3"])
   })
 
 })
