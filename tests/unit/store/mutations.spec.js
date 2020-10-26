@@ -11,7 +11,8 @@ const {
     updateOrderAdd,
     updateOrderRemove,
     clearOrder,
-    loadOrders
+    loadOrders,
+    loadOrder
   } = mutations
 
 describe ('mutations', () => {
@@ -163,6 +164,21 @@ describe ('mutations', () => {
     expect(state.orders).toEqual([])
     loadOrders(state, orders)
     expect(state.orders).toEqual(["order1", "order2", "order3"])
-  })
+  }),
 
+  it('LOADORDER', () => {
+    const order = "order1"
+    const state = { loadedOrder: {} }
+
+    expect(state.loadedOrder).toEqual({})
+    let loadedOrder = {
+      Order: [["dish1", 1],["dish2", 2]],
+      Price: 5
+    }
+    loadOrder(state, loadedOrder)
+    expect(state.loadedOrder).toEqual({
+      Order: [["dish1", 1],["dish2", 2]],
+      Price: 5
+    })
+  })
 })
