@@ -81,6 +81,33 @@ export const mutations = {
   }
 }
 
+export const getters = {
+  loadedMenu (state) {
+    return state.menu
+  },
+  user (state) {
+    return state.user
+  },
+  loading (state) {
+    return state.loading
+  },
+  error (state) {
+    return state.error
+  },
+  totalPrice (state) {
+    return state.totalPrice
+  },
+  loadedCurrentOrder (state) {
+    return state.currentOrder
+  },
+  loadOrders (state) {
+    return state.orders
+  },
+  loadedOrder (state) {
+    return state.loadedOrder
+  }
+}
+
 export default new Vuex.Store({
   state: {
     menu: [
@@ -266,30 +293,5 @@ export default new Vuex.Store({
       commit('clearOrders')
     }
   },
-  getters: {
-    loadedMenu (state) {
-      return state.menu
-    },
-    user (state) {
-      return state.user
-    },
-    loading (state) {
-      return state.loading
-    },
-    error (state) {
-      return state.error
-    },
-    totalPrice (state) {
-      return state.totalPrice
-    },
-    loadedCurrentOrder (state) {
-      return state.currentOrder
-    },
-    loadOrders (state) {
-      return state.orders
-    },
-    loadedOrder (state) {
-      return state.loadedOrder
-    }
-  }
+  getters
 })
