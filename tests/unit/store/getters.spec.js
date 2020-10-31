@@ -2,7 +2,8 @@ import { getters } from '../../../src/store/index.js'
 
 const {
   user,
-  loading
+  loading,
+  error
 } = getters
 
 describe ('setters', () => {
@@ -25,6 +26,13 @@ describe ('setters', () => {
     const result = getters.loading(state)
 
     expect(result).toEqual(true)
+  })
+
+  it('ERROR', () => {
+    const error = "LOADING ERROR"
+    const state = {error:error}
+
+    expect(state.error).toEqual("LOADING ERROR")
   })
 
 })
