@@ -3,7 +3,8 @@ import { getters } from '../../../src/store/index.js'
 const {
   user,
   loading,
-  error
+  error,
+  totalPrice
 } = getters
 
 describe ('setters', () => {
@@ -33,6 +34,13 @@ describe ('setters', () => {
     const state = {error:error}
 
     expect(state.error).toEqual("LOADING ERROR")
+  })
+
+  it('TOTALPRICE', () => {
+    const totalPrice = 5
+    const state = { totalPrice: totalPrice }
+
+    expect(state.totalPrice).toEqual(5)
   })
 
 })
