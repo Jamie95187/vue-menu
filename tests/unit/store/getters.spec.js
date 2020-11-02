@@ -4,7 +4,8 @@ const {
   user,
   loading,
   error,
-  totalPrice
+  totalPrice,
+  loadedCurrentOrder
 } = getters
 
 describe ('setters', () => {
@@ -33,14 +34,20 @@ describe ('setters', () => {
     const error = "LOADING ERROR"
     const state = {error:error}
 
-    expect(state.error).toEqual("LOADING ERROR")
+    expect(getters.error(state)).toEqual("LOADING ERROR")
   })
 
   it('TOTALPRICE', () => {
     const totalPrice = 5
     const state = { totalPrice: totalPrice }
 
-    expect(state.totalPrice).toEqual(5)
+    expect(getters.totalPrice(state)).toEqual(5)
   })
 
+  it('LOADEDCURRENTORDER', () => {
+    const currentOrder = [["dish1", 2], ["dish2", 3]]
+    const state = { currentOrder: currentOrder }
+
+    expect(getters.loadedCurrentOrder(state)).toEqual([["dish1", 2], ["dish2", 3]])
+  })
 })
