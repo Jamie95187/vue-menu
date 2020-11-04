@@ -6,7 +6,8 @@ const {
   error,
   totalPrice,
   loadedCurrentOrder,
-  loadOrders
+  loadOrders,
+  loadedOrder
 } = getters
 
 describe ('setters', () => {
@@ -57,5 +58,18 @@ describe ('setters', () => {
     const state = { orders: orders }
 
     expect(getters.loadOrders(state)).toEqual(["order1", "order2", "order3"])
+  })
+
+  it('LOADEDORDER', () => {
+    const loadedOrder = {
+      Order: [["dish1", 1],["dish2", 2]],
+      Price: 5
+    }
+    const state = { loadedOrder: loadedOrder }
+
+    expect(getters.loadedOrder(state)).toEqual({
+      Order: [["dish1", 1],["dish2", 2]],
+      Price: 5
+    })
   })
 })
