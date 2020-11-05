@@ -108,6 +108,143 @@ export const getters = {
   }
 }
 
+export const actions = {
+  signUserUp({commit}, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        user => {
+          commit('setLoading', false)
+          const newUser = {
+            id: user.uid
+          }
+          commit('setUser', newUser)
+        }
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        }
+      )
+  },
+  signUserIn ({commit}, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+      .then(
+        user => {
+          const signedInUser = {
+            id: user.user.uid,
+            phoneNumber: []
+          }
+          commit('setLoading', false)
+          commit('setUser', signedInUser)
+        }
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        }
+      )
+  },
+  clearError ({commit}) {
+    commit('clearError')
+  },
+  addDish ({commit}, item) {
+    commit('addDish', item)
+    commit('updateOrderAdd', item)
+  },
+  removeDish ({commit}, item) {
+    commit('removeDish', item)
+    commit('updateOrderRemove', item)
+  },
+  submitOrder ({commit}) {
+    commit('setLoading', true)
+    var user = firebase.auth().currentUser;
+    let updatedOrders = [];
+    firebase.database().ref('orders/').push({
+      User: this.state.user,
+      Order: this.state.currentOrder,
+      Price: this.state.totalPrice
+    },
+    function(error) {
+      if (error) {
+        console.log(error)
+      } else {
+        commit('clearOrder')
+        console.log("Successfully posted order")
+        commit('setLoading', false)
+      }
+    }).then(function(response){
+        if (user != null) {
+          user.providerData.forEach(function(profile){
+            console.log(profile)
+          })
+          user.updateProfile({
+            displayName: updatedOrders.push(response.path.pieces_[1])
+          }).then(function(){
+              console.log("Update Successful!")
+            }).catch(function(error) {
+              console.log(error)
+            })
+        }}
+      ).catch(function(error){
+        console.log(error)
+      })
+  },
+  loadOrders ({commit}) {
+    let orders = [];
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+      firebase.database().ref('orders/').on("value", function(snapshot) {
+        for (const [key, value] of Object.entries(snapshot.val())){
+          if (Object.prototype.hasOwnProperty.call(value, 'User')) {
+            for (const val of Object.values(value.User)) {
+              // Add order to the orders array if it is matched with the logged in user
+              if(val === user.uid) {
+                orders.push(key)
+              }
+            }
+          }
+        }
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      })
+    } else {
+      orders = [];
+    }
+
+    commit('loadOrders', orders)
+  },
+  loadOrder ({commit}, id) {
+    let order = {}
+    firebase.database().ref('orders/' + id).on("value", function(snapshot) {
+      order = snapshot.val()
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    })
+    commit('loadOrder', order)
+  },
+  signUserOut ({commit}) {
+    console.log("log out")
+    firebase.auth().signOut().then(function(){
+      console.log("Sucessfully Signed Out!")
+      commit('clearOrders')
+      commit('setUser', null)
+    }).catch(function(error){
+      console.log(error)
+    });
+  },
+  clearOrders ({commit}) {
+    commit('clearOrders')
+  }
+}
+
 export default new Vuex.Store({
   state: {
     menu: [
@@ -157,141 +294,6 @@ export default new Vuex.Store({
     error: null
   },
   mutations,
-  actions: {
-    signUserUp({commit}, payload) {
-      commit('setLoading', true)
-      commit('clearError')
-      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            commit('setLoading', false)
-            const newUser = {
-              id: user.uid
-            }
-            commit('setUser', newUser)
-          }
-        )
-        .catch(
-          error => {
-            commit('setLoading', false)
-            commit('setError', error)
-            console.log(error)
-          }
-        )
-    },
-    signUserIn ({commit}, payload) {
-      commit('setLoading', true)
-      commit('clearError')
-      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-        .then(
-          user => {
-            const signedInUser = {
-              id: user.user.uid,
-              phoneNumber: []
-            }
-            commit('setLoading', false)
-            commit('setUser', signedInUser)
-          }
-        )
-        .catch(
-          error => {
-            commit('setLoading', false)
-            commit('setError', error)
-            console.log(error)
-          }
-        )
-    },
-    clearError ({commit}) {
-      commit('clearError')
-    },
-    addDish ({commit}, item) {
-      commit('addDish', item)
-      commit('updateOrderAdd', item)
-    },
-    removeDish ({commit}, item) {
-      commit('removeDish', item)
-      commit('updateOrderRemove', item)
-    },
-    submitOrder ({commit}) {
-      commit('setLoading', true)
-      var user = firebase.auth().currentUser;
-      let updatedOrders = [];
-      firebase.database().ref('orders/').push({
-        User: this.state.user,
-        Order: this.state.currentOrder,
-        Price: this.state.totalPrice
-      },
-      function(error) {
-        if (error) {
-          console.log(error)
-        } else {
-          commit('clearOrder')
-          console.log("Successfully posted order")
-          commit('setLoading', false)
-        }
-      }).then(function(response){
-          if (user != null) {
-            user.providerData.forEach(function(profile){
-              console.log(profile)
-            })
-            user.updateProfile({
-              displayName: updatedOrders.push(response.path.pieces_[1])
-            }).then(function(){
-                console.log("Update Successful!")
-              }).catch(function(error) {
-                console.log(error)
-              })
-          }}
-        ).catch(function(error){
-          console.log(error)
-        })
-    },
-    loadOrders ({commit}) {
-      let orders = [];
-      var user = firebase.auth().currentUser;
-      if (user != null) {
-        firebase.database().ref('orders/').on("value", function(snapshot) {
-          for (const [key, value] of Object.entries(snapshot.val())){
-            if (Object.prototype.hasOwnProperty.call(value, 'User')) {
-              for (const val of Object.values(value.User)) {
-                // Add order to the orders array if it is matched with the logged in user
-                if(val === user.uid) {
-                  orders.push(key)
-                }
-              }
-            }
-          }
-        }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
-        })
-      } else {
-        orders = [];
-      }
-
-      commit('loadOrders', orders)
-    },
-    loadOrder ({commit}, id) {
-      let order = {}
-      firebase.database().ref('orders/' + id).on("value", function(snapshot) {
-        order = snapshot.val()
-      }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      })
-      commit('loadOrder', order)
-    },
-    signUserOut ({commit}) {
-      console.log("log out")
-      firebase.auth().signOut().then(function(){
-        console.log("Sucessfully Signed Out!")
-        commit('clearOrders')
-        commit('setUser', null)
-      }).catch(function(error){
-        console.log(error)
-      });
-    },
-    clearOrders ({commit}) {
-      commit('clearOrders')
-    }
-  },
+  actions,
   getters
 })
