@@ -18,7 +18,6 @@ describe('actions', () => {
   })
 })
 
-// helpers for testing action with expected mutations
 // const testAction = (action, payload, state, expectedMutations, done) => {
 //   let count = 0
 //
