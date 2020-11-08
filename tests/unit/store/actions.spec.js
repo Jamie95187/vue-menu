@@ -1,19 +1,66 @@
+// import { actions } from '../../../src/store/index.js'
+//
+// describe('actions', () => {
+//   it('tests with a mock commit', () => {
+//     let count = 0;
+//     let data;
+//
+//     let mockCommit = (state, payload) => {
+//       data = payload
+//       count += 1
+//     }
+//
+//     actions.signUserUp({ commit: mockCommit })
+//       .then(() => {
+//         expect(count).toBe(4)
+//         expect(data).toEqual({ title: 'Mock with Jest' })
+//       })
+//   })
+// })
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex)
+
 import { actions } from '../../../src/store/index.js'
 
 describe('actions', () => {
-  it('tests with a mock commit', () => {
-    let count = 0;
-    let data;
+  let store;
+  let setLoadingMock;
+  let clearErrorMock;
+  let setUserMock;
 
-    let mockCommit = (state, payload) => {
-      data = payload
-      count += 1
-    }
+  beforeEach(() => {
+    setLoadingMock = jest.fn()
+    clearErrorMock = jest.fn()
+    setUserMock = jest.fn()
 
-    actions.signUserUp({ commit: mockCommit })
-      .then(() => {
-        expect(count).toBe(4)
-        expect(data).toEqual({ title: 'Mock with Jest' })
+    store = new Vuex.Store({
+      state: { data: {} },
+      mutations: {
+        SET_LOADING: setLoadingMock,
+        CLEAR_ERROR: clearErrorMock,
+        SET_USER: setUserMock
+      },
+      actions: {
+        signUserUp: actions.signUserUp
+      }
+    })
+  })
+
+  it('test using a mock mutation on real store', () => {
+    store.hotUpdate({
+      mutations: { SET_LOADING: setLoadingMock,
+                   CLEAR_ERROR: clearErrorMock,
+                   SET_USER: setUserMock }
+    })
+
+    return store.dispatch('signUserUp')
+      .then((res) => {
+        expect(setLoadingMock.mock.calls).toHaveLength(2)
+        expect(clearErrorMock.mock.calls).toHaveLength(1)
+        expect(setUserMock.mock.calls[0][1])
+          .toEqual({ title: 'Mock with Jest'})
       })
   })
 })
