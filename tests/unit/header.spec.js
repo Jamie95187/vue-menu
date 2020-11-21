@@ -11,7 +11,6 @@ import Vuetify from 'vuetify';
 
 const localVue = createLocalVue()
 
-// localVue.use(Vuetify)
 localVue.use(Vuex)
 
 describe('Header.vue', () => {
@@ -59,5 +58,5 @@ describe('Header.vue', () => {
     const wrapper = mount(Header, { store, localVue, vuetify, stubs});
     expect(wrapper.html()).toMatchSnapshot()
   })
-  
+
 })
