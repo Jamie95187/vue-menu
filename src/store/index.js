@@ -82,9 +82,6 @@ export const mutations = {
 }
 
 export const getters = {
-  // loadedMenu (state) {
-  //   return state.menu
-  // },
   user (state) {
     return state.user
   },
