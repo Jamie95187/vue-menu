@@ -82,6 +82,9 @@ export const mutations = {
 }
 
 export const getters = {
+  loadedMenu (state) {
+    return state.menu
+  },
   user (state) {
     return state.user
   },
@@ -242,54 +245,56 @@ export const actions = {
   }
 }
 
+export let state = {
+  menu: [
+    {
+      imageUrl: 'salmon-sashimi.png',
+      id: '1',
+      title: 'Salmon Sashimi',
+      description: 'A lovely fresh salmon sashimi - £8',
+      price: 8,
+      orders: 0,
+      active: false
+    },
+    {
+      imageUrl: 'tuna-sashimi.jpg',
+      id: '2',
+      title: 'Tuna Sashimi',
+      description: 'A lovely fresh tuna sashimi - £7',
+      price: 7,
+      orders: 0,
+      active: false
+    },
+    {
+      imageUrl: 'cod-sashimi.jpg',
+      id: '3',
+      title: 'Cod Sashimi',
+      description: 'A lovely fresh Cod sashimi - £8',
+      price: 8,
+      orders: 0,
+      active: false
+    },
+    {
+      imageUrl: 'seabream-sashimi.jpg',
+      id: '4',
+      title: 'Sea Bream Sashimi',
+      description: 'A lovely fresh Sea Bream sashimi - £9',
+      price: 9,
+      orders: 0,
+      active: false
+    }
+  ],
+  totalPrice: 0,
+  currentOrder: [],
+  orders: [],
+  loadedOrder: {},
+  user: null,
+  loading: false,
+  error: null
+}
+
 export default new Vuex.Store({
-  state: {
-    menu: [
-      {
-        imageUrl: 'salmon-sashimi.png',
-        id: '1',
-        title: 'Salmon Sashimi',
-        description: 'A lovely fresh salmon sashimi - £8',
-        price: 8,
-        orders: 0,
-        active: false
-      },
-      {
-        imageUrl: 'tuna-sashimi.jpg',
-        id: '2',
-        title: 'Tuna Sashimi',
-        description: 'A lovely fresh tuna sashimi - £7',
-        price: 7,
-        orders: 0,
-        active: false
-      },
-      {
-        imageUrl: 'cod-sashimi.jpg',
-        id: '3',
-        title: 'Cod Sashimi',
-        description: 'A lovely fresh Cod sashimi - £8',
-        price: 8,
-        orders: 0,
-        active: false
-      },
-      {
-        imageUrl: 'seabream-sashimi.jpg',
-        id: '4',
-        title: 'Sea Bream Sashimi',
-        description: 'A lovely fresh Sea Bream sashimi - £9',
-        price: 9,
-        orders: 0,
-        active: false
-      }
-    ],
-    totalPrice: 0,
-    currentOrder: [],
-    orders: [],
-    loadedOrder: {},
-    user: null,
-    loading: false,
-    error: null
-  },
+  state,
   mutations,
   actions,
   getters
