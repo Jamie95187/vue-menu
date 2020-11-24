@@ -69,6 +69,7 @@
           { icon: 'mdi-basket', title: 'View Order', link: '/order'},
           { icon: 'mdi-history', title: 'Order History', link: '/orders'}
         ]
+        // logged on user
         if (this.userIsAuthenticated) {
           menuItems = [
             { icon: 'fastfood', title: 'Menu', link: '/'},
